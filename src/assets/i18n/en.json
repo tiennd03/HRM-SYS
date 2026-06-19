@@ -1,0 +1,7 @@
+{
+    "ERROR": {
+        "401": "You are not logged in or your token has expired.",
+        "403": "You do not have sufficient access.",
+        "DEFAULT": "An error occurred."
+    }
+}
