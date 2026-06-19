@@ -31,7 +31,6 @@ export class AuthService {
   getProfile() {
     return this.http.get<AuthUser>('/api/v1/auth/profile').pipe(
       tap(user => {
-        localStorage.setItem('current_user', JSON.stringify(user));
         this._currentUser.set(user);
       })
     );
