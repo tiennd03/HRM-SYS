@@ -1,0 +1,62 @@
+<div class="min-h-screen flex items-center justify-center p-4" 
+  style="background-color: #eef2f7;">
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200" 
+  style="width: 420px; min-height: 470px; padding: 36px 40px;">
+
+    <div class="flex justify-center">
+        <div class="w-16 h-16 rounded-full flex items-center justify-center" style="background-color: #DBEAFE;">
+        <span class="font-bold text-lg" style="color: #2563EB;">HRM</span>
+        </div>
+    </div>
+    <h1 class="mt-8 text-center text-xl font-semibold text-slate-800">Đăng nhập hệ thống</h1>
+
+    <p class="mt-1 text-center text-sm text-slate-500">Quản lí nhân sự</p>
+
+    @if(errorMsg()){
+        <div class="flex items-center gap-2 bg-red-50 mt-4 border border-red-200 text-red-700 rounded-lg px-4 py-3 mb-6 text-sm">
+            <span>{{errorMsg()}}</span>
+        </div>
+        
+    }    
+    
+    <div class="mb-4">
+        <label class="block text-sm font-semibold mb-1.5" style="color: #374151;">Tên đăng nhập</label>
+        <input  type="text" placeholder="emp0002" [value]="username()" (input)="username.set($any($event.target).value)" (keyup.enter)="onLogin()" 
+        class=" w-full rounded-lg outline-none text-sm"
+        style="padding: 10px 14px; border: 1px solid #CBD5E1; box-sizing: border-box;">
+    </div>
+
+     <div class="mb-4">
+        <label class="block text-sm font-semibold mb-1.5" style="color: #374151;">Mật khẩu</label>
+        <input  type="password" placeholder="••••••" [value]="password()" (input)="password.set($any($event.target).value)" (keyup.enter)="onLogin()" 
+        class=" w-full rounded-lg outline-none text-sm"
+        style="padding: 10px 14px; border: 1px solid #CBD5E1; box-sizing: border-box;">
+    </div>
+
+    <div class="flex items-center justify-between mb-6">
+      <label class="flex items-center gap-2 text-xs cursor-pointer" style="color: #6B7280;">
+        <input type="checkbox" />
+        Ghi nhớ đăng nhập
+      </label>
+
+      <a href="#" class="text-xs" style="color: #2563EB;">Quên mật khẩu?</a>
+    </div>
+
+    <button (click)="onLogin()" [disabled]="isLoading()"
+    class="w-full py-2.5 rounded-lg font-semibold text-sm text-white" style="background-color: #2563EB; border: none; cursor: pointer;">
+         @if (isLoading()) {
+          <span class="flex items-center justify-center gap-2">
+            <i class="pi pi-spin pi-spinner"></i>
+            Đang đăng nhập...
+          </span>
+        } @else {
+          Đăng nhập
+        }
+    </button>
+
+     <p class="text-center mt-4" style="font-size: 10px; color: #9CA3AF;">
+      Mặc định: username = mã NV (emp0002)  .  mật khẩu 123456
+    </p>
+
+  </div>
+</div>
