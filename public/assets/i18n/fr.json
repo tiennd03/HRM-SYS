@@ -1,0 +1,7 @@
+{
+    "ERROR": {
+        "401": "Vous n'êtes pas connecté ou votre jeton a expiré.",
+        "403": "Vous ne disposez pas d'un accès suffisant.",
+        "DEFAULT": "Une erreur s'est produite."
+    }
+}

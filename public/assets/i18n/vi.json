@@ -1,0 +1,29 @@
+{
+    "ERROR": {
+        "401": "Bạn chưa đăng nhập hoặc token hết hạn",
+        "403": "Bạn không đủ quyền truy cập",
+        "DEFAULT": "Có lỗi xảy ra"
+    },
+
+    "LOGIN": {
+        "TITLE": "Đăng nhập hệ thống",
+        "SUBTITLE": "Quản lý nhân sự",
+        "USERNAME_LABEL": "Tên đăng nhập",
+        "USERNAME_PLACEHOLDER": "emp0002",
+        "PASSWORD_LABEL": "Mật khẩu",
+        "PASSWORD_PLACEHOLDER": "••••••",
+        "REMEMBER_ME": "Ghi nhớ đăng nhập",
+        "FORGOT_PASSWORD": "Quên mật khẩu?",
+        "SUBMIT": "Đăng nhập",
+        "SUBMITTING": "Đang đăng nhập...",
+        "HINT": "Mặc định: username = mã NV (emp0002) · mật khẩu 123456",
+        "VALIDATION": {
+            "USERNAME_REQUIRED": "Vui lòng nhập tên đăng nhập",
+            "PASSWORD_REQUIRED": "Vui lòng nhập mật khẩu",
+            "PASSWORD_MIN": "Mật khẩu phải có ít nhất 6 ký tự"
+        },
+        "ERROR": {
+            "INVALID_CREDENTIALS": "Sai tài khoản hoặc mật khẩu"
+        }
+  }
+}
