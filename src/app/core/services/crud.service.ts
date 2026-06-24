@@ -1,8 +1,10 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient , HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Page } from "./page.model";
+import { Page } from "../models/page.model";
 
-export abstract class CrudService<T>{
+@Injectable()
+export abstract class CrudService<T> {
     protected constructor(
         protected http:HttpClient,
         protected apiUrl: string
@@ -13,8 +15,8 @@ export abstract class CrudService<T>{
     }
 
     page(
-        page: number = 0,
-        size: number = 10,
+        page: string = '0',
+        size: string = '10',
         sort?: string
     ) : Observable<Page<T>> {
         let params = new HttpParams()
@@ -47,7 +49,7 @@ export abstract class CrudService<T>{
     delete(
         id: number | string
     ): Observable<void>{
-        return this.http.delete<void>(`${this.apiUrl}/$id`);        
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);        
     }
 
     search(
