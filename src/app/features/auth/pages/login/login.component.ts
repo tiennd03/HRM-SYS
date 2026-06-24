@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AuthService } from "../../../../core/services/auth.service";
-
+import { SearchBarComponent } from "../../../../shared/components/search-bar/search-bar.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,TranslatePipe],
+  imports: [ReactiveFormsModule,TranslatePipe, SearchBarComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -16,6 +16,7 @@ export class LoginComponent {
   private route = inject(ActivatedRoute);
   private translate = inject(TranslateService);
 
+ 
   form = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
