@@ -14,7 +14,7 @@ export abstract class CrudService<T> {
         return this.http.get<T[]>(this.apiUrl);
     }
 
-    page(
+    getPage(
         page: string = '0',
         size: string = '10',
         sort?: string
