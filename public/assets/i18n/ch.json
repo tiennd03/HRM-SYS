@@ -3,5 +3,21 @@
         "401": "您尚未登录或您的令牌已过期。",
         "403": "您没有足够的权限。",
         "DEFAULT": "发生错误。"
+    },
+    "STATES": {
+        "EMPTY": {
+            "MESSAGE": "无数据"
+        },
+        "ERROR": {
+            "MESSAGE": "发生错误。",
+            "RETRY": "重试"
+        },
+        "LOADING": {
+            "MESSAGE": "正在加载数据..."
+        }
+    },
+    "CONFIRM_DIALOG": {
+        "DELETE": "删除员工",
+        "DELETE_MESSAGE": "您确定要删除 <strong>{{username}}</strong> 吗？此操作无法撤销。"
     }
 }
