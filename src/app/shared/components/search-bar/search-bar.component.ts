@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'search-bar',
+  selector: 'app-search-bar',
   standalone: true,
   imports: [FormsModule, SearchIconComponent],
   templateUrl: './search-bar.component.html',

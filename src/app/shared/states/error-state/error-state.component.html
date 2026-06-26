@@ -1,0 +1,11 @@
+<div class="flex flex-col items-center justify-center py-10">
+  <p class="text-red-500 text-sm">
+    {{ message }}
+  </p>
+
+  <button
+    class="mt-4 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+    (click)="retry.emit()">
+    Thử lại
+  </button>
+</div>
