@@ -3,5 +3,27 @@
         "401": "您尚未登录或您的令牌已过期。",
         "403": "您没有足够的权限。",
         "DEFAULT": "发生错误。"
-    }
+    },
+
+    "LOGIN": {
+        "TITLE": "登录系统",
+        "SUBTITLE": "员工管理",
+        "USERNAME_LABEL": "用户名",
+        "USERNAME_PLACEHOLDER": "emp0002",
+        "PASSWORD_LABEL": "密码",
+        "PASSWORD_PLACEHOLDER": "••••••",
+        "REMEMBER_ME": "记住我",
+        "FORGOT_PASSWORD": "忘记密码?",
+        "SUBMIT": "登录",
+        "SUBMITTING": "登录中...",
+        "HINT": "默认: 用户名 = 员工ID (emp0002) · 密码 123456",
+        "VALIDATION": {
+            "USERNAME_REQUIRED": "请输入您的用户名",
+            "PASSWORD_REQUIRED": "请输入您的密码",
+            "PASSWORD_MIN": "密码必须至少包含6个字符"
+        },
+        "ERROR": {
+            "INVALID_CREDENTIALS": "用户名或密码不正确"
+        }
+  }
 }

@@ -15,14 +15,14 @@ export class AuthService {
   login(request: LoginRequest) {
     return this.http.post<LoginResponse>('/api/v1/auth/login', request).pipe(
       tap(response => {
-        localStorage.setItem('access_token', response.accessToken);
+        localStorage.setItem('accessToken', response.accessToken);
         this._currentUser.set(response.user);
       })
     );
   }
 
   logout() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('accessToken');
     this._currentUser.set(null);
   }
 
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem('accessToken');
   }
 
   hasPermission(permission: string): boolean {

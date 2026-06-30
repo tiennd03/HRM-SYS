@@ -3,9 +3,12 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ReactiveFormsModule, Validators } from "@angular/forms";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AuthService } from "../../../../core/services/auth.service";
-import { FormfieldConfig } from "../../../../shared/models/form-field.model";
 import { DynamicFormComponent } from "../../../../shared/dynamic-form/dynamic-form.component";
+import { TextField } from "../../../../shared/models/field-types/text-fiels.model";
+import { PasswordField } from "../../../../shared/models/field-types/password-field.model";
+import { CheckboxField } from "../../../../shared/models/field-types/checkbox-field.model";
 
+export type LoginFormFields = TextField | PasswordField | CheckboxField;
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -18,7 +21,7 @@ export class LoginComponent {
   private route = inject(ActivatedRoute);
   private translate = inject(TranslateService);
 
-fields: FormfieldConfig[] = [
+  fields: LoginFormFields[] = [
   {
     name: 'username',
     type: 'text',
@@ -37,10 +40,23 @@ fields: FormfieldConfig[] = [
     validators: [Validators.required, Validators.minLength(6)],
     errorMessage: {
       required: 'LOGIN.VALIDATION.PASSWORD_REQUIRED',
-      minLenght: 'LOGIN.VALIDATION.PASSWORD_MIN'
+      min_length: 'LOGIN.VALIDATION.PASSWORD_MIN'
     }
+  },
+  {
+    name: 'rememberMe',
+    type: 'checkbox',
+    label: 'LOGIN.REMEMBER_ME',
+    className : 'custom-checkbox',
+    checked: false,
+    options: [
+      {
+        label: 'LOGIN.REMEMBER_ME',
+        value: false
+      }
+    ]
   }
-];
+]
   isLoading = false;
   errorMsg = '';
 

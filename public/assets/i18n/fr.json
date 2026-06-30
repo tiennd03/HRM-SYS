@@ -3,5 +3,27 @@
         "401": "Vous n'êtes pas connecté ou votre jeton a expiré.",
         "403": "Vous ne disposez pas d'un accès suffisant.",
         "DEFAULT": "Une erreur s'est produite."
-    }
+    },
+    
+    "LOGIN": {
+        "TITLE": "Connexion au système",
+        "SUBTITLE": "Gestion des employés",
+        "USERNAME_LABEL": "Nom d'utilisateur",
+        "USERNAME_PLACEHOLDER": "emp0002",
+        "PASSWORD_LABEL": "Mot de passe",
+        "PASSWORD_PLACEHOLDER": "••••••",
+        "REMEMBER_ME": "Se souvenir de moi",
+        "FORGOT_PASSWORD": "Mot de passe oublié?",
+        "SUBMIT": "Connexion",
+        "SUBMITTING": "Connexion en cours...",
+        "HINT": "Par défaut : nom d'utilisateur = ID d'employé (emp0002) · mot de passe 123456",
+        "VALIDATION": {
+            "USERNAME_REQUIRED": "Veuillez entrer votre nom d'utilisateur",
+            "PASSWORD_REQUIRED": "Veuillez entrer votre mot de passe",
+            "PASSWORD_MIN": "Le mot de passe doit contenir au moins 6 caractères"
+        },
+        "ERROR": {
+            "INVALID_CREDENTIALS": "Nom d'utilisateur ou mot de passe incorrect"
+        }
+  }
 }
