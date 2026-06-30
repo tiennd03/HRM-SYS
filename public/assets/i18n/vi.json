@@ -4,6 +4,26 @@
         "403": "Bạn không đủ quyền truy cập",
         "DEFAULT": "Có lỗi xảy ra"
     },
+    "STATES": {
+        "EMPTY": {
+            "MESSAGE": "không có dữ liệu"
+        },
+        "ERROR": {
+            "MESSAGE": "Có lỗi xảy ra",
+            "RETRY": "Thử lại"
+        },
+        "LOADING": {
+            "MESSAGE": "Đang tải dữ liệu..."
+        }
+    },
+    "CONFIRM_DIALOG": {
+        "DELETE": "Xóa nhân viên?",
+        "DELETE_MESSAGE": "Bạn có chắc muốn xóa <strong>{{username}}</strong>? Hành động này không thể hoàn tác.'"
+    },
+    "BTN": {
+        "CANCEL_BTN": "Hủy",
+        "DELETE_BTN": "Xóa"
+    },
 
     "LOGIN": {
         "TITLE": "Đăng nhập hệ thống",

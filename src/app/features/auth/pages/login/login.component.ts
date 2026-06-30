@@ -9,10 +9,11 @@ import { PasswordField } from "../../../../shared/models/field-types/password-fi
 import { CheckboxField } from "../../../../shared/models/field-types/checkbox-field.model";
 
 export type LoginFormFields = TextField | PasswordField | CheckboxField;
+import { SearchBarComponent } from "../../../../shared/components/search-bar/search-bar.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,TranslatePipe,DynamicFormComponent],
+  imports: [ReactiveFormsModule,TranslatePipe, SearchBarComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

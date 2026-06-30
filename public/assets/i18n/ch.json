@@ -26,4 +26,24 @@
             "INVALID_CREDENTIALS": "用户名或密码不正确"
         }
   }
+    "STATES": {
+        "EMPTY": {
+            "MESSAGE": "无数据"
+        },
+        "ERROR": {
+            "MESSAGE": "发生错误。",
+            "RETRY": "重试"
+        },
+        "LOADING": {
+            "MESSAGE": "正在加载数据..."
+        }
+    },
+    "CONFIRM_DIALOG": {
+        "DELETE": "删除员工",
+        "DELETE_MESSAGE": "您确定要删除 <strong>{{username}}</strong> 吗？此操作无法撤销。"
+    },
+    "BTN": {
+        "CANCEL_BTN": "取消",
+        "DELETE_BTN": "擦除"
+    }
 }

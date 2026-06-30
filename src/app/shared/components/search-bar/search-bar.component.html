@@ -1,0 +1,19 @@
+<div class="flex items-center rounded-md border border-slate-300 bg-white text-xs text-slate-400">
+    
+    <button
+        type="button"
+        (click)="onSearch()"
+        class="flex items-center justify-center px-1 ml-3 py-2 text-black "
+    >
+        <app-search-icon class="h-4 w-4 rotate-90"></app-search-icon>
+    </button>
+
+    <input
+        type="text"
+        [placeholder]="placeholder"
+        [(ngModel)]="value"
+        (ngModelChange)="onInputChange()"
+        (keyup.enter)="onSearch()"
+        class="w-full bg-transparent pr-3 py-2 text-sm text-gray-700 outline-none placeholder:text-slate-400"
+    />
+</div>
