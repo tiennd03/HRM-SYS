@@ -3,5 +3,25 @@
         "401": "Vous n'êtes pas connecté ou votre jeton a expiré.",
         "403": "Vous ne disposez pas d'un accès suffisant.",
         "DEFAULT": "Une erreur s'est produite."
+    },
+    "STATES": {
+        "EMPTY": {
+            "MESSAGE": "Aucune donnée"
+        },
+        "ERROR": {
+            "MESSAGE": "Une erreur s'est produite.",
+            "RETRY": "Réessayer"
+        },
+        "LOADING": {
+            "MESSAGE": "Chargement des données..."
+        }
+    },
+    "CONFIRM_DIALOG": {
+        "DELETE": "Supprimer employé",
+        "DELETE_MESSAGE": "Êtes-vous sûr de vouloir supprimer <strong>{{username}}</strong> ? Cette action est irréversible."
+    },
+    "BTN": {
+        "CANCEL_BTN": "Annuler",
+        "DELETE_BTN": "Effacer"
     }
 }

@@ -1,0 +1,49 @@
+<div class="overflow-x-auto rounded-md border-collapse border-gray-300 bg-white">
+  <table class="w-full border">
+    <thead>
+      <tr class="bg-gray-100 border-b border-gray-200 text-gray-700 font-bold text-[11px] text-left">
+        <th
+          *ngFor="let col of columns"
+          (click)="changeSort(col)"
+          class="p-2 border cursor-pointer select-none"
+        >
+          <div class="flex items-center gap-1">
+            <span>{{ col.label }}</span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let row of data" 
+        class="border-b border-gray-200 odd:bg-white even:bg-gray-50 hover:bg-blue-50">
+        <td *ngFor="let col of columns" class="p-2 text-sm text-gray-700">
+          {{ getValue(row, col) }}
+        </td>
+      </tr>
+
+      <!-- Empty state -->
+      <tr *ngIf="data.length === 0">
+        <td
+          [attr.colspan]="columns.length"
+          class="p-4 text-center text-sm text-gray-500"
+        >
+          No data
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination -->
+<app-pagination 
+  [pageIndex]="pageIndex"
+  [pageSize]="pageSize"
+  [totalPage]="totalPages"
+  [sortField]="sortField"
+  [sortDirection]="sortDirection"
+  [totalElements]=" totalElements"
+  (pageChange)="changePage($event)"
+>
+
+</app-pagination>

@@ -3,5 +3,25 @@
         "401": "You are not logged in or your token has expired.",
         "403": "You do not have sufficient access.",
         "DEFAULT": "An error occurred."
+    },
+    "STATES": {
+        "EMPTY": {
+            "MESSAGE": "No data"
+        },
+        "ERROR": {
+            "MESSAGE": "An error occurred.",
+            "RETRY": "Retry"
+        },
+        "LOADING": {
+            "MESSAGE": "Loading data..."
+        }
+    },
+    "CONFIRM_DIALOG": {
+        "DELETE": "Delete employee",
+        "DELETE_MESSAGE": "Are you sure you want to delete <strong>{{username}}</strong>? This action cannot be undone."
+    },
+    "BTN": {
+        "CANCEL_BTN": "Cancel",
+        "DELETE_BTN": "Erase"
     }
 }

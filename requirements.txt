@@ -1,0 +1,7 @@
+ngx-toastr@19
+@ngx-translate/core@17
+@ngx-translate/http-loader@17
+@angular/animations@19
+tailwindcss
+@tailwindcss/postcss
+postcss

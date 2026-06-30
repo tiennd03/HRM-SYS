@@ -1,0 +1,52 @@
+<div class="flex items-center justify-between mr-6 mt-3 text-sm">
+  <div>
+    <span class="text-xs text-gray-500 text-left">
+      Hiển thị {{elementsIndex.start}}-{{elementsIndex.end}} trong {{ totalElements }} . size {{pageSize}} . sort {{sortField}},{{sortDirection}}
+    </span>
+  </div>
+
+  <div class="flex items-center gap-2">
+    <button
+      type="button"
+      (click)="changePage(pageIndex - 1)"
+      [disabled]="pageIndex == 0"
+      class="px-3 py-1 flex items-center justify-center rounded-md border border-gray-300 bg-white
+         hover:bg-gray-50
+         disabled:opacity-40
+         disabled:hover:bg-white
+         disabled:text-gray-400
+         disabled:border-gray-200"
+    >
+      <app-chevronup-icon class="inline-block -rotate-90 w-[16px] h-[20px]"></app-chevronup-icon>
+    </button>
+    
+    <ng-container *ngFor="let item of pages">
+      <app-btn-pagination
+        *ngIf="item !== '...' ; else dots"
+        [pageNumber]="item"
+        [pageIndex]="pageIndex"
+      >
+      </app-btn-pagination>
+      <ng-template #dots>
+        <span class="px-2 text-gray-500">...</span>
+      </ng-template>
+
+    </ng-container>
+    
+
+  
+    <button
+      type="button"
+      (click)="changePage(pageIndex + 1)"
+      [disabled]="pageIndex + 1 >= totalPage"
+      class="px-3 py-1 flex items-center justify-center rounded-md border border-gray-300 bg-white
+         hover:bg-gray-50
+         disabled:opacity-40
+         disabled:hover:bg-white
+         disabled:text-gray-400
+         disabled:border-gray-200"
+    >
+      <app-chevronup-icon class="inline-block rotate-90 w-[16px] h-[20px]"></app-chevronup-icon>
+    </button>
+  </div>
+</div>

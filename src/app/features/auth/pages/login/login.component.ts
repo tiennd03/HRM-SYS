@@ -3,13 +3,11 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ReactiveFormsModule, Validators } from "@angular/forms";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AuthService } from "../../../../core/services/auth.service";
-import { FormfieldConfig } from "../../../../shared/models/form-field.model";
-import { DynamicFormComponent } from "../../../../shared/dynamic-form/dynamic-form.component";
-
+import { SearchBarComponent } from "../../../../shared/components/search-bar/search-bar.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,TranslatePipe,DynamicFormComponent],
+  imports: [ReactiveFormsModule,TranslatePipe, SearchBarComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
