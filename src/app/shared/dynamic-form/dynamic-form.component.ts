@@ -15,6 +15,8 @@ export class DynamicFormComponent {
 fields = input.required<FieldConfig[]>();
 formSubmit = output<Record<string, any>>();
 form = new FormGroup({});
+submitLabel = input<string>('');
+buttonClass = input<string>('');
 constructor() {
   effect(() => {
     this.fields().forEach(field => {
