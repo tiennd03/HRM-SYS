@@ -41,7 +41,7 @@ export class LoginComponent {
     validators: [Validators.required, Validators.minLength(6)],
     errorMessage: {
       required: 'LOGIN.VALIDATION.PASSWORD_REQUIRED',
-      min_length: 'LOGIN.VALIDATION.PASSWORD_MIN'
+      minLength: 'LOGIN.VALIDATION.PASSWORD_MIN'
     }
   },
   {
