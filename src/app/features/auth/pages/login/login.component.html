@@ -20,13 +20,16 @@
     }
     <app-dynamic-form
       [fields]="fields"
-      [submitLabel]="'LOGIN.SUBMIT' | translate"
-      [isLoading]="isLoading"
       (formSubmit)="onLogin($event)"
-    />
+      [submitLabel]="'LOGIN.SUBMIT'"
+      [buttonClass]="'button-login'"
+    >
+      <a href="#" class="flex items-center text-sm text-blue-600 hover:underline float-right -mt-11">
+        {{'LOGIN.FORGOT_PASSWORD' | translate }}
+      </a>  
+    </app-dynamic-form>
     <p class="text-center mt-4 text-[10px] text-gray-400">
       {{ 'LOGIN.HINT' | translate }}
     </p>
-
   </div>
 </div>

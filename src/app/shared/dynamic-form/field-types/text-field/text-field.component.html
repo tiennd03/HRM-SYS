@@ -15,5 +15,8 @@
    @if (control().hasError('required')) {
      <p>{{ config().errorMessage?.required | translate}}</p>
    }
+   @if (control().hasError('pattern')) {
+     <p>{{ config().errorMessage?.pattern | translate}}</p>
+   }
  }
 </div>

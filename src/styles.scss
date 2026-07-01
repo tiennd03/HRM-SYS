@@ -6,6 +6,89 @@
 :root {
   --btn-blue: #2563eb;
   --white: white;
+  --primary-color: #2563EB;
+  --primary-color-hover: #1D4ED8;
+  --primary-color-active: #1E40AF;
+  --text-color: #FFFFFF;
+  --border-color: #c8cacf;
+  --background-color: #FFFFFF;
+  --checkbox-checkmark-color: #2563EB;
+  --checkbox-border-color: #2563EB;
+  --border-radius-btn: 4px;
+  --border-btn-style : 1.5px solid;
+  --border-width-checkbox: 0 2px 2px 0;
+  --transform-rotate-checkbox: rotate(45deg);
+}
+
+.custom-checkbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: var(--border-btn-style) var(--checkbox-border-color);
+  border-radius: var(--border-radius-btn);
+  background-color: var(--background-color);
+  margin-left: 8px;
+  cursor: pointer;
+  position: relative;
+
+  &:checked {
+    background-color: var(--background-color);
+  }
+
+  &:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: var(--border-btn-style) var(--checkbox-checkmark-color);
+    border-width: var(--border-width-checkbox);
+    transform: var(--transform-rotate-checkbox);
+  }
+}
+.custom-checkbox-gray {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: var(--border-btn-style) var(--border-color);
+  border-radius: var(--border-radius-btn);
+  background-color: var(--background-color);
+  cursor: pointer;
+  position: relative;
+
+  &:checked {
+    background-color: var(--background-color);
+  }
+
+  &:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 5px;
+    height: 9px;
+    border: var(--border-btn-style) var(--checkbox-checkmark-color);
+    border-width: var(--border-width-checkbox);
+    transform: var(--transform-rotate-checkbox);
+  }
+}
+.button-login {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: var(--border-radius-btn);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  transition: background-color 0.2s;
+  cursor: pointer;
+  &:hover { background-color: var(--primary-color-hover); }
+  &:active { background-color: var(--primary-color-active); }
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 }
 
 .active {

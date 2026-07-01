@@ -1,5 +1,5 @@
 import { Component, input } from "@angular/core";
-import { FormfieldConfig } from "../../../models/form-field.model";
+import { PasswordField } from "../../../models/field-types/password-field.model";
 import { FormControl } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TranslatePipe } from'@ngx-translate/core';
@@ -12,6 +12,6 @@ import { TranslatePipe } from'@ngx-translate/core';
 })
 
 export class PasswordFieldComponent {
-  config = input.required<FormfieldConfig> ();
+  config = input.required<PasswordField> ();
   control = input.required <FormControl> ();
 }
