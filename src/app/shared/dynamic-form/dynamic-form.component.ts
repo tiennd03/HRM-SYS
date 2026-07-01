@@ -1,22 +1,22 @@
 import { Component, effect, input, output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { FormfieldConfig } from "../models/form-field.model";
 import { TextFieldComponent } from "./field-types/text-field/text-field.component";
 import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
+import { FieldConfig } from "../models/field-config.model";
+import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-field.component";
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [ ReactiveFormsModule,TextFieldComponent,PasswordFieldComponent ],
+  imports: [ ReactiveFormsModule,TextFieldComponent,PasswordFieldComponent,CheckboxFieldComponent],
   templateUrl:'./dynamic-form.component.html'
 })
 export class DynamicFormComponent {
-fields = input.required<FormfieldConfig[]>();
+fields = input.required<FieldConfig[]>();
 formSubmit = output<Record<string, any>>();
 form = new FormGroup({});
-submitLabel = input<string>('Submit');
-isLoading = input<boolean>(false);
-
+submitLabel = input<string>('');
+buttonClass = input<string>('');
 constructor() {
   effect(() => {
     this.fields().forEach(field => {
