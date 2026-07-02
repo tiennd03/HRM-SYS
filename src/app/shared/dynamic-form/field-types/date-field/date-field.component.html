@@ -1,0 +1,19 @@
+<div class="flex flex-col gap-2" 
+  [ngClass]="config().className?.container ?? ''">
+
+  <label *ngIf="config().label"
+    [ngClass]="config().className?.label ?? ''">
+    {{ config().label | translate }}
+  </label>
+
+  <input
+    type="date"
+    [formControl]="control()"
+    [name]="config().name"
+    [min]="config().minDate ?? '1900-01-01'"
+    [max]="config().maxDate ?? '2099-12-31'"
+    [readonly]="config().readonly ?? false"
+    class=" rounded-md border border-gray-300 px-3 py-2"
+    [ngClass]="config().className?.input ?? ''">
+
+</div>

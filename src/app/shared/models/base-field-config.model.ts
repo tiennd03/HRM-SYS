@@ -14,4 +14,12 @@ export interface  BaseFieldConfig{
         minLength ?: string;
         pattern ?: string;
     }
+    className?: {
+        container?: string;
+        label?: string;
+        input?: string;
+        option?: string;
+        button?: string;
+    };
+    readonly?: boolean; 
 }

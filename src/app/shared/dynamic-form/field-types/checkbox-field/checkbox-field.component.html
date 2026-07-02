@@ -3,7 +3,7 @@
     type="checkbox"
     [id]="config().name"
     [formControl]="control()"
-    [className]="config().className">
+    [className]="config().className?.input ?? ''">
   <label [for]="config().name" 
     class="text-gray-500 text-sm select-none cursor-pointer ml-2">
     {{ config().label | translate }}

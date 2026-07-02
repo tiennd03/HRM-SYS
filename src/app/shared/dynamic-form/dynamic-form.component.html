@@ -1,13 +1,7 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" 
+class="grid grid-cols-12 gap-4">
 
   @for (field of fields(); track field.name) {
-
-    @if (field.type === 'text') {
-      <app-text-field
-        [config]="field"
-        [control]="getControl(field.name)"
-      />
-    }
     @if (field.type === 'password') {
       <app-password-field
         [config]="field"
@@ -20,9 +14,33 @@
         [control]="getControl(field.name)"
       />
     }
+    @if (field.type === 'radio') {
+      <app-radio-field
+        [config]="field"
+        [control]="getControl(field.name)"
+      />
+    }
+    @if (field.type === 'search') {
+      <app-search-field
+        [config]="field"
+        [control]="getControl(field.name)"
+      />
+    }
+    @if (field.type === 'date') {
+      <app-date-field
+        [config]="field"
+        [control]="getControl(field.name)"
+      />
+    }
+    @if (field.type === 'select') {
+      <app-select-field
+        [config]="field"
+        [control]="getControl(field.name)"
+      />
+    }
   }
   <ng-content/>
-  <button type="submit"[class]="buttonClass()">
+  <button type="submit" [class]="buttonClass()">
     {{ submitLabel() | translate }}
   </button>
 </form>

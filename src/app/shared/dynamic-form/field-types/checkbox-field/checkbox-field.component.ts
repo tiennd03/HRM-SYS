@@ -9,7 +9,7 @@ import { TranslatePipe } from'@ngx-translate/core';
     standalone : true,
     imports : [ ReactiveFormsModule, TranslatePipe ],
     templateUrl :'./checkbox-field.component.html',
-    styleUrl :'./checkbox-field.component.scss'
+    
 })
 export class CheckboxFieldComponent {
   config = input.required<CheckboxField> ();
