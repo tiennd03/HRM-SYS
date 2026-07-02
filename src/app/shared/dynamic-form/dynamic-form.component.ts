@@ -1,14 +1,20 @@
 import { Component, effect, input, output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { TranslatePipe } from '@ngx-translate/core';
 import { TextFieldComponent } from "./field-types/text-field/text-field.component";
 import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
+import { CheckboxFieldComponent} from "./field-types/checkbox-field/checkbox-field.component";
+import { TextareaFieldComponent } from "./field-types/textarea-field/textarea-field.component";
 import { FieldConfig } from "../models/field-config.model";
-import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-field.component";
-
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [ ReactiveFormsModule,TextFieldComponent,PasswordFieldComponent,CheckboxFieldComponent],
+  imports: [ ReactiveFormsModule,
+            TextFieldComponent,
+            PasswordFieldComponent,
+            CheckboxFieldComponent,
+            TextareaFieldComponent,
+            TranslatePipe],
   templateUrl:'./dynamic-form.component.html'
 })
 export class DynamicFormComponent {
