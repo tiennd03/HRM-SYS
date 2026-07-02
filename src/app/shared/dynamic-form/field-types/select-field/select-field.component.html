@@ -1,0 +1,37 @@
+<div class="flex flex-col gap-2 w-full" 
+  [ngClass]="config().className?.container ?? ''">
+
+  <label
+    *ngIf="config().label"
+    class="text-sm font-medium text-gray-700"
+    [ngClass]="config().className?.label ?? ''">
+
+    {{ config().label | translate }}
+  </label>
+
+  <select
+    [formControl]="control()"
+
+    class="rounded-lg border border-gray-300 px-3 py-2"
+    [ngClass]="config().className?.input">
+
+    <option
+      *ngIf="config().placeholder"
+      
+      value=""
+      disabled>
+      {{ config().placeholder | translate }}
+    </option>
+
+    <option
+      *ngFor="let op of config().options"
+      [value]="op.value"
+      [ngClass]="config().className?.option">
+
+      {{ op.label | translate }}
+
+    </option>
+
+  </select>
+
+</div>

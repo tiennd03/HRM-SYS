@@ -4,16 +4,15 @@ import { ReactiveFormsModule, Validators } from "@angular/forms";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { AuthService } from "../../../../core/services/auth.service";
 import { DynamicFormComponent } from "../../../../shared/dynamic-form/dynamic-form.component";
-import { TextField } from "../../../../shared/models/field-types/text-fiels.model";
 import { PasswordField } from "../../../../shared/models/field-types/password-field.model";
 import { CheckboxField } from "../../../../shared/models/field-types/checkbox-field.model";
 
-export type LoginFormFields = TextField | PasswordField | CheckboxField;
+export type LoginFormFields = PasswordField | CheckboxField;
 import { SearchBarComponent } from "../../../../shared/components/search-bar/search-bar.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,TranslatePipe, SearchBarComponent],
+  imports: [ReactiveFormsModule,TranslatePipe, DynamicFormComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -23,16 +22,7 @@ export class LoginComponent {
   private translate = inject(TranslateService);
 
   fields: LoginFormFields[] = [
-  {
-    name: 'username',
-    type: 'text',
-    label: 'LOGIN.USERNAME_LABEL',
-    placeholder: 'LOGIN.USERNAME_PLACEHOLDER',
-    validators: [Validators.required],
-    errorMessage: {
-      required:'LOGIN.VALIDATION.USERNAME_REQUIRED' 
-    }
-  },
+  
   {
     name: 'password',
     type: 'password',
@@ -48,7 +38,9 @@ export class LoginComponent {
     name: 'rememberMe',
     type: 'checkbox',
     label: 'LOGIN.REMEMBER_ME',
-    className : 'custom-checkbox',
+    className: {
+      input: 'custom-checkbox'
+    },
     checked: false,
     options: [
       {

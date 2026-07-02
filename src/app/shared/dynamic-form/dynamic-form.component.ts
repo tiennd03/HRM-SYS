@@ -1,14 +1,31 @@
 import { Component, effect, input, output } from "@angular/core";
+import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { TextFieldComponent } from "./field-types/text-field/text-field.component";
-import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
-import { FieldConfig } from "../models/field-config.model";
-import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-field.component";
 
+import { TranslatePipe } from '@ngx-translate/core';
+
+import { FieldConfig } from "../models/field-config.model";
+import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
+import { RadioFieldComponent } from "./field-types/radio-field/radio-field.component";
+import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-field.component";
+import { SearchFieldComponent } from "./field-types/search-field/search-field.component";
+import { DateFieldComponent } from "./field-types/date-field/date-field.component";
+import { SelectFieldComponent } from "./field-types/select-field/select-field.component";
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [ ReactiveFormsModule,TextFieldComponent,PasswordFieldComponent,CheckboxFieldComponent],
+  imports: [ 
+    ReactiveFormsModule,
+    TranslatePipe, 
+    CommonModule , 
+
+    PasswordFieldComponent, 
+    CheckboxFieldComponent, 
+    SearchFieldComponent,
+    RadioFieldComponent,
+    DateFieldComponent,
+    SelectFieldComponent
+    ],
   templateUrl:'./dynamic-form.component.html'
 })
 export class DynamicFormComponent {

@@ -96,3 +96,16 @@
   color: var(--white);
   border-color: var(--btn-blue);
 }
+//========================== RADIO BTN ==========================
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left : 100px;
+  cursor: pointer;
+}
+
+.radio-item input {
+  display: none;
+}
+
