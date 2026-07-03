@@ -25,6 +25,7 @@
         "ERROR": {
             "INVALID_CREDENTIALS": "Invalid username or password"
         }
+    },
     "STATES": {
         "EMPTY": {
             "MESSAGE": "No data"

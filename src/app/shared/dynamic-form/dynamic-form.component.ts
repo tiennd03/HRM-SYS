@@ -5,6 +5,7 @@ import { TextFieldComponent } from "./field-types/text-field/text-field.componen
 import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
 import { CheckboxFieldComponent} from "./field-types/checkbox-field/checkbox-field.component";
 import { TextareaFieldComponent } from "./field-types/textarea-field/textarea-field.component";
+import { EmailFieldComponent } from "./field-types/email-field/email-field.component";
 import { FieldConfig } from "../models/field-config.model";
 @Component({
   selector: 'app-dynamic-form',
@@ -14,6 +15,7 @@ import { FieldConfig } from "../models/field-config.model";
             PasswordFieldComponent,
             CheckboxFieldComponent,
             TextareaFieldComponent,
+            EmailFieldComponent,
             TranslatePipe],
   templateUrl:'./dynamic-form.component.html'
 })
