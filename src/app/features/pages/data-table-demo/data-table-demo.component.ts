@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , signal, Signal } from '@angular/core';
 
 import { TableColumn } from '../../../shared/models/table.model';
 import { DataTableComponent } from '../../../shared/components/data-table/data-table.component';
@@ -9,6 +9,8 @@ import { RadioField } from '../../../shared/models/field-types/radio-field.model
 import { SearchField } from '../../../shared/models/field-types/search-field.model';
 import { DateField } from '../../../shared/models/field-types/date-field.model';
 import { SelectField } from '../../../shared/models/field-types/select-field.model';
+
+import { UserRole , USER_ROLE_OPTIONS } from '../../../shared/dynamic-form/constants/selectOption.constants';
 interface User {
   id: number;
   username: string;
@@ -35,34 +37,37 @@ export class DataTableDemoComponent implements OnInit {
     { key: 'status', label: 'Status', sortable: true }
   ];
 
-  allUsers: User[] = Array.from({ length: 60 }, (_, index) => ({
-  id: index + 1,
-  username: `user${index + 1}`,
-  email: `user${index + 1}@example.com`,
-  status: index % 2 === 0 ? 'Active' : 'Inactive'
-}));
+  allUsers = signal<User[]>(
+    Array.from({ length: 60 }, (_, index) => ({
+      id: index + 1,
+      username: `user${index + 1}`,
+      email: `user${index + 1}@example.com`,
+      status: index % 2 === 0 ? 'Active' : 'Inactive'
+    }))
+  );
 
-  data: User[] = [];
 
+  data = signal<User[]>([]);
 
-  totalElements = 0;
-  pageIndex = 0;
-  pageSize = 11;
+  totalElements = signal(0);
+  pageIndex = signal(0);
+  pageSize = signal(11);
 
-  sortField = '';
-  sortDirection: 'asc' | 'desc' = 'asc';
+  sortField = signal('');
+  sortDirection= signal<'asc' | 'desc'>('asc');
 
   fields : tableDataForm[] = [
     {
       type: 'radio',
       name: 'status',
-      label: '',
+      label: 'Status',
       options: [
         { value: 'ACTIVE', label: 'Active' },
         { value: 'INACTIVE', label: 'Inactive' }
       ],
       className: {
-        container: 'col-span-12'
+        container: '',
+        span: 'col-span-12'
       }
       
     },
@@ -72,30 +77,30 @@ export class DataTableDemoComponent implements OnInit {
       label: 'Search',
       placeholder: 'Search by username or email',
       className: {
-        container: 'col-span-4'
+        container: '',
+        span: 'col-span-4'
       }
     },
     {
       type: 'date',
       name: 'birthday',
-      label: '',
-      minDate: '2000-01-01',
-      maxDate: '2030-12-31',
+      label: 'Date',
+      minDate: new Date(1900, 1, 1),
+      maxDate: new Date(2030, 11, 31),
       className: {
-        container: 'col-span-4'
+        container: '',
+        span: 'col-span-4'
+
       }
     },
     {
       type: 'select',
       name: 'role',
       label: 'Role',
-      options: [
-        { value: 'ADMIN', label: 'Admin' },
-        { value: 'USER', label: 'User' },
-        { value: 'GUEST', label: 'Guest' }
-      ],
+      options: USER_ROLE_OPTIONS,
       className: {
-        container: 'col-span-4'
+        container: '',
+        span: 'col-span-12'
       }
      
     }
@@ -109,42 +114,41 @@ export class DataTableDemoComponent implements OnInit {
   }
 
   loadData(): void {
-    let result = [...this.allUsers];
+    let result = [...this.allUsers()];
 
     // sort giả lập server-side
-    if (this.sortField) {
+    if (this.sortField()) {
       result.sort((a: any, b: any) => {
-        const aValue = a[this.sortField];
-        const bValue = b[this.sortField];
+        const aValue = a[this.sortField()];
+        const bValue = b[this.sortField()];
 
         if (aValue < bValue) {
-          return this.sortDirection === 'asc' ? -1 : 1;
+          return this.sortDirection() === 'asc' ? -1 : 1;
         }
 
         if (aValue > bValue) {
-          return this.sortDirection === 'asc' ? 1 : -1;
+          return this.sortDirection() === 'asc' ? 1 : -1;
         }
 
         return 0;
       });
     }
-    const start = this.pageIndex * this.pageSize;
-    const end = start + this.pageSize;
+    const start = this.pageIndex() * this.pageSize()  ;
+    const end = start + this.pageSize();
 
-    this.totalElements = result.length;
-    this.data = result.slice(start, end);
-  }
+    this.totalElements.set(result.length);
+    this.data.set(result.slice(start, end));  }
 
   onPageChange(event: { page: number; size: number }): void {
-    this.pageIndex = event.page;
-    this.pageSize = event.size;
+    this.pageIndex.set(event.page);
+    this.pageSize.set(event.size);
     this.loadData();
   }
 
   onSortChange(event: { field: string; direction: 'asc' | 'desc' }): void {
-    this.sortField = event.field;
-    this.sortDirection = event.direction;
-    this.pageIndex = 0;
+    this.sortField.set(event.field);
+    this.sortDirection.set(event.direction);
+    this.pageIndex.set(0);
     this.loadData();
   }
 }

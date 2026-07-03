@@ -18,4 +18,9 @@ import { SelectField } from '../../../models/field-types/select-field.model';
 export class SelectFieldComponent {
   config = input.required<SelectField>();
   control = input.required<FormControl>();
+  ngOnInit() {
+    this.control().valueChanges.subscribe(value => {
+      console.log(value)
+    })
+  }
 }

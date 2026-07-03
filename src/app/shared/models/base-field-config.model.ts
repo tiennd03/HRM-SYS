@@ -1,7 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
-export interface DynamicFieldOption {
+export interface DynamicFieldOption<T = any> {
     label : string;
-    value : any;
+    value : T;
 }
 export interface  BaseFieldConfig{
     name : string;
@@ -20,6 +20,7 @@ export interface  BaseFieldConfig{
         input?: string;
         option?: string;
         button?: string;
+        span?: string;
     };
     readonly?: boolean; 
 }
