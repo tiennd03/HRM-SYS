@@ -1,24 +1,32 @@
 import { Component, effect, input, output } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
-import { TranslatePipe } from '@ngx-translate/core';
-import { TextFieldComponent } from "./field-types/text-field/text-field.component";
-import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
-import { CheckboxFieldComponent} from "./field-types/checkbox-field/checkbox-field.component";
-import { TextareaFieldComponent } from "./field-types/textarea-field/textarea-field.component";
-import { EmailFieldComponent } from "./field-types/email-field/email-field.component";
+import { CommonModule } from "@angular/common";
+
+import { TranslatePipe } from "@ngx-translate/core";
+
 import { FieldConfig } from "../models/field-config.model";
+import { TextFieldComponent } from "./field-types/text-field/text-field.component";
+import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-field.component";
+import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
+import { RadioFieldComponent } from "./field-types/radio-field/radio-field.component";
+import { EmailFieldComponent } from "./field-types/email-field/email-field.component";
+
+
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
-  imports: [ ReactiveFormsModule,
-            TextFieldComponent,
-            PasswordFieldComponent,
-            CheckboxFieldComponent,
-            TextareaFieldComponent,
-            EmailFieldComponent,
-            TranslatePipe],
-  templateUrl:'./dynamic-form.component.html'
-})
+  imports: [ 
+    ReactiveFormsModule,
+    TranslatePipe,
+
+    
+    TextFieldComponent,
+    PasswordFieldComponent,
+    CheckboxFieldComponent,
+    RadioFieldComponent,
+    EmailFiledComponent
+  ],
+
 export class DynamicFormComponent {
 fields = input.required<FieldConfig[]>();
 formSubmit = output<Record<string, any>>();

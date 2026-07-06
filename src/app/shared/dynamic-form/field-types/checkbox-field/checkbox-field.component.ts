@@ -8,7 +8,7 @@ import { TranslatePipe } from'@ngx-translate/core';
     selector: 'app-checkbox-field',
     standalone : true,
     imports : [ ReactiveFormsModule, TranslatePipe ],
-    templateUrl :'./checkbox-field.component.html',
+    templateUrl :'./checkbox-field.component.html'
 })
 export class CheckboxFieldComponent {
   config = input.required<CheckboxField> ();
