@@ -3,10 +3,12 @@ import { signal } from '@angular/core';
 
 
 import { TableColumn } from '../../../shared/models/table.model';
+
 import { DataTableComponent } from './../../../shared/components/data-table/data-table.component';
 import { SearchBarComponent } from '../../../shared/components/search-bar/search-bar.component';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
 import { RadioField } from '../../../shared/models/field-types/radio-field.model';
+import { DateField } from '../../../shared/models/field-types/date-field.model';
 interface User {
   id: number;
   username: string;
@@ -14,7 +16,7 @@ interface User {
   status: string;
 }
 
-export type tableDataForm = RadioField;
+export type tableDataForm = RadioField | DateField;
 @Component({
   selector: 'app-data-table-demo',
   imports: [
@@ -63,6 +65,15 @@ export class DataTableDemoComponent implements OnInit {
         container: '',
         span: 'col-span-12'
       }   
+    },
+    {
+      type: 'date',
+      name: 'date',
+      label: 'date',
+      className: {
+        container: '',
+        span: 'col-span-4'
+      }
     }
   ]
 
