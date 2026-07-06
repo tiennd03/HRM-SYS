@@ -10,7 +10,8 @@ import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-fi
 import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
 import { RadioFieldComponent } from "./field-types/radio-field/radio-field.component";
 import { EmailFieldComponent } from "./field-types/email-field/email-field.component";
-
+import { DateFieldComponent } from "./field-types/date-field/date-field.component";
+import { TextareaFieldComponent } from "./field-types/textarea-field/textarea-field.component";
 
 @Component({
   selector: 'app-dynamic-form',
@@ -18,36 +19,40 @@ import { EmailFieldComponent } from "./field-types/email-field/email-field.compo
   imports: [ 
     ReactiveFormsModule,
     TranslatePipe,
+    CommonModule,
 
     
     TextFieldComponent,
     PasswordFieldComponent,
     CheckboxFieldComponent,
     RadioFieldComponent,
-    EmailFiledComponent
+    EmailFieldComponent,
+    DateFieldComponent,
+    TextareaFieldComponent
   ],
-
+  templateUrl: './dynamic-form.component.html',
+})
 export class DynamicFormComponent {
-fields = input.required<FieldConfig[]>();
-formSubmit = output<Record<string, any>>();
-form = new FormGroup({});
-submitLabel = input<string>('');
-buttonClass = input<string>('');
-constructor() {
-  effect(() => {
-    this.fields().forEach(field => {
-      this.form.addControl(
-        field.name,
-        new FormControl('', field.validators ?? [])
-      );
+  fields = input.required<FieldConfig[]>();
+  formSubmit = output<Record<string, any>>();
+  form = new FormGroup({});
+  submitLabel = input<string>('');
+  buttonClass = input<string>('');
+  constructor() {
+    effect(() => {
+      this.fields().forEach(field => {
+        this.form.addControl(
+          field.name,
+          new FormControl('', field.validators ?? [])
+        );
+      });
     });
-  });
-}
-onSubmit() {
-  if (this.form.invalid) return;
-  this.formSubmit.emit(this.form.value);
-}
-getControl(name: string): FormControl {
-  return this.form.get(name) as FormControl;
-}
+  }
+  onSubmit() {
+    if (this.form.invalid) return;
+    this.formSubmit.emit(this.form.value);
+  }
+  getControl(name: string): FormControl {
+    return this.form.get(name) as FormControl;
+  }
 }
