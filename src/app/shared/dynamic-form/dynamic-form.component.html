@@ -20,6 +20,18 @@
         [control]="getControl(field.name)"
       />
     }
+    @if (field.type === 'textarea') {
+      <app-textarea-field
+        [config]="field"
+        [control]="getControl(field.name)"
+      />
+    }
+    @if (field.type === 'email') {
+      <app-email-field
+        [config]="field"
+        [control]="getControl(field.name)"
+      />
+    }
   }
   <ng-content/>
   <button type="submit"[class]="buttonClass()">

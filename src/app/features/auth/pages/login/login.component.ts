@@ -7,13 +7,11 @@ import { DynamicFormComponent } from "../../../../shared/dynamic-form/dynamic-fo
 import { TextField } from "../../../../shared/models/field-types/text-fiels.model";
 import { PasswordField } from "../../../../shared/models/field-types/password-field.model";
 import { CheckboxField } from "../../../../shared/models/field-types/checkbox-field.model";
-
 export type LoginFormFields = TextField | PasswordField | CheckboxField;
-import { SearchBarComponent } from "../../../../shared/components/search-bar/search-bar.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,TranslatePipe, SearchBarComponent],
+  imports: [ReactiveFormsModule,TranslatePipe,DynamicFormComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -48,7 +46,7 @@ export class LoginComponent {
     name: 'rememberMe',
     type: 'checkbox',
     label: 'LOGIN.REMEMBER_ME',
-    className : 'custom-checkbox',
+    className : 'custom-checkbox-gray',
     checked: false,
     options: [
       {

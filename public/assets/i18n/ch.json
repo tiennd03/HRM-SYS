@@ -25,7 +25,7 @@
         "ERROR": {
             "INVALID_CREDENTIALS": "用户名或密码不正确"
         }
-  }
+  },
     "STATES": {
         "EMPTY": {
             "MESSAGE": "无数据"
