@@ -48,6 +48,7 @@ export class LoginComponent {
     name: 'rememberMe',
     type: 'checkbox',
     label: 'LOGIN.REMEMBER_ME',
+    className : {},
     checked: false,
     options: [
       {

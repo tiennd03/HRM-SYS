@@ -1,0 +1,16 @@
+<div>
+    <label class="block text-sm font-semibold mb-1.5 text-gray-700">
+    {{ config().label |translate}}
+    </label>
+    <textarea 
+    type="textarea"
+    [id]="config().name" 
+    [formControl]="control()"
+    [rows]="config().rows"
+    [cols]="config().cols"
+    [placeholder]="config().placeholder | translate"
+    class=" resize-none rounded-lg outline-none text-sm px-3.5 py-2.5
+           border text-gray-900 transition-all
+           focus:ring-2 focus:ring-blue-100">
+    </textarea>
+</div>

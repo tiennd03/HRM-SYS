@@ -9,6 +9,8 @@ import { TextFieldComponent } from "./field-types/text-field/text-field.componen
 import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-field.component";
 import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
 import { RadioFieldComponent } from "./field-types/radio-field/radio-field.component";
+import { EmailFieldComponent } from "./field-types/email-field/email-field.component";
+
 
 @Component({
   selector: 'app-dynamic-form',
@@ -21,10 +23,10 @@ import { RadioFieldComponent } from "./field-types/radio-field/radio-field.compo
     TextFieldComponent,
     PasswordFieldComponent,
     CheckboxFieldComponent,
-    RadioFieldComponent
+    RadioFieldComponent,
+    EmailFiledComponent
   ],
-  templateUrl:'./dynamic-form.component.html'
-})
+
 export class DynamicFormComponent {
 fields = input.required<FieldConfig[]>();
 formSubmit = output<Record<string, any>>();

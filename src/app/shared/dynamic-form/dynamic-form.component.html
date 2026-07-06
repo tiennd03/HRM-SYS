@@ -26,6 +26,16 @@ class="grid grid-cols-12 gap-4 w-full h-full">
         [config]="field"
         [control]="getControl(field.name)"
         [class]="field.className?.span ?? ''"
+    @if (field.type === 'textarea') {
+      <app-textarea-field
+        [config]="field"
+        [control]="getControl(field.name)"
+      />
+    }
+    @if (field.type === 'email') {
+      <app-email-field
+        [config]="field"
+        [control]="getControl(field.name)"
       />
     }
   }
