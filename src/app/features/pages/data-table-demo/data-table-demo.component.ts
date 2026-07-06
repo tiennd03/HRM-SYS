@@ -7,6 +7,9 @@ import { DataTableComponent } from './../../../shared/components/data-table/data
 import { SearchBarComponent } from '../../../shared/components/search-bar/search-bar.component';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
 import { RadioField } from '../../../shared/models/field-types/radio-field.model';
+import { SelectField } from '../../../shared/models/field-types/select-field.model';
+import { USER_ROLE_OPTIONS } from '../../../shared/dynamic-form/constants/selectOption.constants';
+import { ACOUNT_STATUS_OPTION } from '../../../shared/dynamic-form/constants/radioOption.constants';
 interface User {
   id: number;
   username: string;
@@ -14,7 +17,7 @@ interface User {
   status: string;
 }
 
-export type tableDataForm = RadioField;
+export type tableDataForm = RadioField | SelectField;
 @Component({
   selector: 'app-data-table-demo',
   imports: [
@@ -55,14 +58,22 @@ export class DataTableDemoComponent implements OnInit {
       type: 'radio',
       name: 'status',
       label: 'Status',
-      options: [
-        { value: 'ACTIVE', label: 'Active' },
-        { value: 'INACTIVE', label: 'Inactive' }
-      ],
+      options: ACOUNT_STATUS_OPTION,
       className: {
         container: '',
         span: 'col-span-12'
       }   
+    },
+    {
+      type: 'select',
+      name: 'role',
+      label: 'Role',
+      options: USER_ROLE_OPTIONS,
+      className: {
+        container: '',
+        span: 'col-span-4'
+      }
+     
     }
   ]
 
