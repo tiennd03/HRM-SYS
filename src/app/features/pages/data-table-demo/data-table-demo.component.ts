@@ -3,13 +3,19 @@ import { signal } from '@angular/core';
 
 
 import { TableColumn } from '../../../shared/models/table.model';
+
 import { DataTableComponent } from './../../../shared/components/data-table/data-table.component';
 import { SearchBarComponent } from '../../../shared/components/search-bar/search-bar.component';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
-import { RadioField } from '../../../shared/models/field-types/radio-field.model';
-import { SelectField } from '../../../shared/models/field-types/select-field.model';
+
 import { USER_ROLE_OPTIONS } from '../../../shared/dynamic-form/constants/selectOption.constants';
 import { ACOUNT_STATUS_OPTION } from '../../../shared/dynamic-form/constants/radioOption.constants';
+
+import { DateField } from '../../../shared/models/field-types/date-field.model';
+import { RadioField } from '../../../shared/models/field-types/radio-field.model';
+import { SelectField } from '../../../shared/models/field-types/select-field.model';
+import { SearchField } from '../../../shared/models/field-types/search-field.model';
+
 interface User {
   id: number;
   username: string;
@@ -17,7 +23,9 @@ interface User {
   status: string;
 }
 
-export type tableDataForm = RadioField | SelectField;
+
+export type tableDataForm = RadioField | SelectField | DateField | SearchField;
+
 @Component({
   selector: 'app-data-table-demo',
   imports: [
@@ -57,7 +65,7 @@ export class DataTableDemoComponent implements OnInit {
     {
       type: 'radio',
       name: 'status',
-      label: 'Status',
+      label: '',
       options: ACOUNT_STATUS_OPTION,
       className: {
         container: '',
@@ -67,13 +75,29 @@ export class DataTableDemoComponent implements OnInit {
     {
       type: 'select',
       name: 'role',
-      label: 'Role',
+      label: '',
       options: USER_ROLE_OPTIONS,
       className: {
         container: '',
         span: 'col-span-4'
       }
-     
+    },
+    {
+      type: 'date',
+      name: 'date',
+      label: '',
+      className: {
+          container: '',
+          span: 'col-span-4'
+      }
+    },
+    {
+      type: 'search',
+      name : 'search',
+      label : 'search',
+      className: {
+        span: 'col-span-4'
+      }
     }
   ]
 
