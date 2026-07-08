@@ -4,16 +4,18 @@ import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 
 import { TranslateService } from '@ngx-translate/core';
+import { TokenService } from '../services/token.service';
 
 export const globalHttpErrorInterceptor: HttpInterceptorFn = (req, next) => {
   const toast = inject(ToastrService)
   const translate = inject(TranslateService)
+  const tokenService = inject(TokenService)
   return next(req).pipe(
     catchError((e:HttpErrorResponse) => {
       switch (e.status){
         case 401:
           toast.error(translate.instant('ERROR.401'));
-          localStorage.removeItem('accessToken');
+          tokenService.removeToken();
           window.location.href = '/login';
           break;
         case 403: 

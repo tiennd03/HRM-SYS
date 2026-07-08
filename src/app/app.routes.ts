@@ -1,15 +1,12 @@
 import { Routes } from '@angular/router';
 import { DataTableDemoComponent } from './features/pages/data-table-demo/data-table-demo.component';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
+import { LoginComponent } from './features/auth/pages/login/login.component';
 export const routes: Routes = [
   //{ path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '', redirectTo: 'data-table-demo', pathMatch: 'full'},
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./features/auth/pages/login/login.component')
-        .then(m => m.LoginComponent),
-  },
+  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: 'login' , component: LoginComponent},
+  { path: 'dashboard', redirectTo: 'data-table-demo', pathMatch: 'full'},
   { path: 'data-table-demo', component: DataTableDemoComponent},
   { path: 'app-confirm-dialog', component: ConfirmDialogComponent},
   { path: '**', redirectTo: 'login' },

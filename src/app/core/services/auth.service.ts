@@ -1,13 +1,17 @@
-  import { Injectable, signal, computed, inject } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { AuthUser, LoginRequest, LoginResponse } from '../models/auth.model';
 import { AUTH_API } from '../../features/auth/auth.api';
+import { TokenService } from './token.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private http = inject(HttpClient);
+  private tokenService = inject(TokenService);
   private _currentUser = signal<AuthUser | null>(null);
+
+  
 
   currentUser  = this._currentUser.asReadonly();
   isLoggedIn   = computed(() => this._currentUser() !== null);
@@ -16,14 +20,14 @@ export class AuthService {
   login(request: LoginRequest) {
     return this.http.post<LoginResponse>(AUTH_API.LOGIN, request).pipe(
       tap(response => {
-        localStorage.setItem('accessToken', response.accessToken);
+        this.tokenService.setToken(response.accessToken);
         this._currentUser.set(response.user);
       })
     );
   }
 
   logout() {
-    localStorage.removeItem('accessToken');
+    this.tokenService.removeToken();
     this._currentUser.set(null);
   }
 
@@ -36,7 +40,7 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('accessToken');
+    return this.tokenService.getToken();
   }
 
   hasPermission(permission: string): boolean {
