@@ -1,0 +1,24 @@
+<div class="relative" 
+[ngClass]="config().className?.container ?? ''">
+    <span
+      class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer">
+  
+      🔍
+    </span>
+  <input
+    type="search"
+    [formControl]="control()"
+    [placeholder]="config().placeholder ?? ''"
+    class=" rounded-lg border border-gray-300 py-2 pl-10 pr-10 focus:border-blue-500 focus:outline-none w-full"
+    [ngClass]="config().className?.input ?? ''">
+
+    <button
+        *ngIf="config().clearable && control().value"
+        type="button"
+        class="absolute right-3 top-1/2 -translate-y-1/2"
+        [ngClass]="config().className?.button ?? ''"
+        (click)= "clear()">
+
+            ✕
+    </button>
+</div>

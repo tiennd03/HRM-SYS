@@ -10,8 +10,10 @@ import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-fi
 import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
 import { RadioFieldComponent } from "./field-types/radio-field/radio-field.component";
 import { EmailFieldComponent } from "./field-types/email-field/email-field.component";
+import { SelectFieldComponent } from "./field-types/select-field/select-field.component";
 import { DateFieldComponent } from "./field-types/date-field/date-field.component";
 import { TextareaFieldComponent } from "./field-types/textarea-field/textarea-field.component";
+import { SearchFieldComponent } from "./field-types/search-field/search-field.component";
 
 @Component({
   selector: 'app-dynamic-form',
@@ -27,8 +29,10 @@ import { TextareaFieldComponent } from "./field-types/textarea-field/textarea-fi
     CheckboxFieldComponent,
     RadioFieldComponent,
     EmailFieldComponent,
+    SelectFieldComponent,
     DateFieldComponent,
-    TextareaFieldComponent
+    TextareaFieldComponent,
+    SearchFieldComponent
   ],
   templateUrl: './dynamic-form.component.html',
 })
