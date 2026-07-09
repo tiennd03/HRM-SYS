@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('accessToken');
+    this.tokenService.removeToken();
     this._currentUser.set(null);
   }
 
