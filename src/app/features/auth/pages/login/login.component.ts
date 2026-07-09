@@ -13,7 +13,7 @@ export type LoginFormFields = TextField | PasswordField | CheckboxField;
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,TranslatePipe, SearchBarComponent, DynamicFormComponent],
+  imports: [ReactiveFormsModule,TranslatePipe, DynamicFormComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
@@ -28,6 +28,9 @@ export class LoginComponent {
     type: 'text',
     label: 'LOGIN.USERNAME_LABEL',
     placeholder: 'LOGIN.USERNAME_PLACEHOLDER',
+    className: {
+    span: 'col-span-12'
+    },
     validators: [Validators.required],
     errorMessage: {
       required:'LOGIN.VALIDATION.USERNAME_REQUIRED' 
@@ -38,6 +41,9 @@ export class LoginComponent {
     type: 'password',
     label: 'LOGIN.PASSWORD_LABEL',
     placeholder: 'LOGIN.PASSWORD_PLACEHOLDER',
+    className: {
+    span: 'col-span-12'
+    },
     validators: [Validators.required, Validators.minLength(6)],
     errorMessage: {
       required: 'LOGIN.VALIDATION.PASSWORD_REQUIRED',
@@ -48,8 +54,11 @@ export class LoginComponent {
     name: 'rememberMe',
     type: 'checkbox',
     label: 'LOGIN.REMEMBER_ME',
-    className : {},
     checked: false,
+    className: {
+      span: 'col-span-6',
+      container: 'custom-checkbox-gray',
+    },
     options: [
       {
         label: 'LOGIN.REMEMBER_ME',
