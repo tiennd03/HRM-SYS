@@ -45,5 +45,22 @@
     "BTN": {
         "CANCEL_BTN": "Cancel",
         "DELETE_BTN": "Erase"
+    },
+    
+    "LAYOUT": {
+     "MENU": {
+      "DASHBOARD": "Dashboard",
+      "EMPLOYEE": "Employees",
+      "DEPARTMENT": "Departments",
+      "POSITION": "Positions",
+      "ATTENDANCE": "Attendance",
+      "LEAVE": "Leave Requests",
+      "PAYROLL": "Payroll",
+      "USER": "Users",
+      "ROLE": "Roles & Permissions"
+     }
+    },
+    "HEADER": {
+     "LOGOUT": "Logout"
     }
 }
