@@ -1,4 +1,5 @@
-import { Component , signal } from '@angular/core';
+import { EmployeeService } from './../../services/employee.service';
+import { Component , inject, signal } from '@angular/core';
 
 import { DataTableComponent } from '../../../../shared/components/data-table/data-table.component';
 import { DynamicFormComponent } from '../../../../shared/dynamic-form/dynamic-form.component';
@@ -6,7 +7,10 @@ import { DynamicFormComponent } from '../../../../shared/dynamic-form/dynamic-fo
 import { DEPARTMENT_OPTIONS, JOB_TITLE_OPTIONS, STATUS_OPTIONS } from '../../../../shared/dynamic-form/constants/selectOption.constants';
 
 import { SelectField } from '../../../../shared/models/field-types/select-field.model';
-import { SearchField } from './../../../../shared/models/field-types/search-field.model';
+import { SearchField } from '../../../../shared/models/field-types/search-field.model';
+import { Employee } from '../../models/employee.model';
+import { TableColumn } from '../../../../shared/models/table.model';
+import { EMPLOYEE_COLUMNS } from '../../constants/employee.constant';
 
 export type dynamicForm = SearchField | SelectField;
 @Component({
@@ -19,12 +23,7 @@ export type dynamicForm = SearchField | SelectField;
   styleUrl: './employee-list.component.scss'
 })
 export class EmployeeListComponent {
-  totalElement = signal(0);
-  pageIndex = signal(0);
-  pageSize = signal(10);
-  sortField = signal('');
-  sortDirection = signal<'asc'|'desc'>('asc');
-
+  private employeeService = inject(EmployeeService);
   formClass = 'p-4 rounded-lg border border-gray-200 bg-white';
   fields : dynamicForm[] = [
     {
@@ -66,4 +65,26 @@ export class EmployeeListComponent {
       options: STATUS_OPTIONS
     }
   ]
+  columns = EMPLOYEE_COLUMNS;
+  data = signal<Employee[]>([]);
+  totalElement = signal(0);
+  pageIndex = signal(0);
+  pageSize = signal(10);
+  sortField = signal('');
+  sortDirection = signal<'asc'|'desc'>('asc');
+
+
+  loadEmployees() {
+    this.employeeService.getEmployees().subscribe({
+      next: (res) => {
+        this.data.set(res.content);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
+  }
+  ngOnInt(): void {
+    this.loadEmployees();
+  }
 }

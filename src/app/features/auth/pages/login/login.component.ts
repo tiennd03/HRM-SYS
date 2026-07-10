@@ -7,7 +7,6 @@ import { DynamicFormComponent } from "../../../../shared/dynamic-form/dynamic-fo
 import { TextField } from "../../../../shared/models/field-types/text-fiels.model";
 import { PasswordField } from "../../../../shared/models/field-types/password-field.model";
 import { CheckboxField } from "../../../../shared/models/field-types/checkbox-field.model";
-import { SearchBarComponent } from "../../../../shared/components/search-bar/search-bar.component";
 
 export type LoginFormFields = TextField | PasswordField | CheckboxField;
 @Component({
@@ -28,9 +27,6 @@ export class LoginComponent {
     type: 'text',
     label: 'LOGIN.USERNAME_LABEL',
     placeholder: 'LOGIN.USERNAME_PLACEHOLDER',
-    className: {
-    span: 'col-span-12'
-    },
     validators: [Validators.required],
     errorMessage: {
       required:'LOGIN.VALIDATION.USERNAME_REQUIRED' 
@@ -44,9 +40,6 @@ export class LoginComponent {
     type: 'password',
     label: 'LOGIN.PASSWORD_LABEL',
     placeholder: 'LOGIN.PASSWORD_PLACEHOLDER',
-    className: {
-    span: 'col-span-12'
-    },
     validators: [Validators.required, Validators.minLength(6)],
     errorMessage: {
       required: 'LOGIN.VALIDATION.PASSWORD_REQUIRED',
@@ -70,10 +63,7 @@ export class LoginComponent {
         label: 'LOGIN.REMEMBER_ME',
         value: false
       }
-    ],
-    className: {
-      span : 'col-span-6'
-    }
+    ]
   }
 ]
   isLoading = false;

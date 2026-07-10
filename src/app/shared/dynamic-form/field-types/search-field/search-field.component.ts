@@ -1,6 +1,5 @@
 import { Component , input } from '@angular/core';
 import { FormControl , ReactiveFormsModule} from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
 
 import { debounceTime , distinctUntilChanged } from 'rxjs';
 
@@ -11,8 +10,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-search-field',
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    TranslatePipe
+    ReactiveFormsModule
   ],
   templateUrl: './search-field.component.html'
 })
