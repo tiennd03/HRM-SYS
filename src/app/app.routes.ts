@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { DataTableDemoComponent } from './features/pages/data-table-demo/data-table-demo.component';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
-import { EmployeeListComponent } from './features/employee/pages/employee-list/employee-list.component';
+import { EmployeeListComponent   } from './features/employee/pages/employee-list/employee-list.component';
 import { LoginComponent } from './features/auth/pages/login/login.component';
 export const routes: Routes = [
   //{ path: '', redirectTo: 'login', pathMatch: 'full' },

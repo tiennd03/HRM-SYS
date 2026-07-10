@@ -78,13 +78,16 @@ export class EmployeeListComponent {
     this.employeeService.getEmployees().subscribe({
       next: (res) => {
         this.data.set(res.content);
+        console.log(res.content);
       },
       error: (err) => {
         console.error(err);
       }
     })
   }
-  ngOnInt(): void {
+  ngOnInit(): void {
     this.loadEmployees();
+    console.log(this.data);
+    console.log('hi');
   }
 }
