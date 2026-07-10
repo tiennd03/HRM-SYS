@@ -11,8 +11,9 @@
   <select
   [formControl]="control()"
   
-  class="rounded-lg border border-gray-300 px-3 py-2"
-  [ngClass]="config().className?.input">
+  class="select-box"
+  [class]="config().className?.input ?? ''"
+  [class.selected]="!!control().value">
   
     <option
     *ngIf="config().placeholder"
@@ -23,11 +24,11 @@
     </option>
 
     <option
-    *ngFor="let op of config().options"
-    [value]="op.value"
+    *ngFor="let option of config().options"
+    [ngValue]="option.value"
     [ngClass]="config().className?.option">
     
-    {{ op.label | translate }}
+    {{ option.label | translate }}
     
   </option>
   

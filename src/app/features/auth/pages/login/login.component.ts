@@ -31,6 +31,9 @@ export class LoginComponent {
     validators: [Validators.required],
     errorMessage: {
       required:'LOGIN.VALIDATION.USERNAME_REQUIRED' 
+    },
+    className: {
+      span : 'col-span-12'
     }
   },
   {
@@ -42,20 +45,25 @@ export class LoginComponent {
     errorMessage: {
       required: 'LOGIN.VALIDATION.PASSWORD_REQUIRED',
       minLength: 'LOGIN.VALIDATION.PASSWORD_MIN'
+    },
+    className: {
+      span : 'col-span-12'
     }
   },
   {
     name: 'rememberMe',
     type: 'checkbox',
     label: 'LOGIN.REMEMBER_ME',
-    className : {},
     checked: false,
     options: [
       {
         label: 'LOGIN.REMEMBER_ME',
         value: false
       }
-    ]
+    ],
+    className: {
+      span : 'col-span-6'
+    }
   }
 ]
   isLoading = false;

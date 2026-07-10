@@ -9,8 +9,9 @@
     type="search"
     [formControl]="control()"
     [placeholder]="config().placeholder ?? ''"
-    class=" rounded-lg border border-gray-300 py-2 pl-10 pr-10 focus:border-blue-500 focus:outline-none w-full"
-    [ngClass]="config().className?.input ?? ''">
+    class="search-box rounded-lg border border-gray-300 py-2 pl-10 pr-10 focus:border-blue-500 focus:outline-none w-full"
+    [ngClass]="config().className?.input ?? ''"
+    [class.selected]="!!control().value">
 
     <button
         *ngIf="config().clearable && control().value"
