@@ -77,13 +77,11 @@
       </app-search-field>
     }
   }
-
+  <ng-content/>
   <button
     type="submit"
     [class]="buttonClass()">
-
     {{ submitLabel() | translate }}
 
   </button>
-
 </form>
