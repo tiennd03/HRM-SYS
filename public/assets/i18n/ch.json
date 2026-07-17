@@ -45,5 +45,21 @@
     "BTN": {
         "CANCEL_BTN": "取消",
         "DELETE_BTN": "擦除"
+    },
+    "LAYOUT": {
+     "MENU": {
+      "DASHBOARD": "仪表盘",
+      "EMPLOYEE": "员工",
+      "DEPARTMENT": "部门",
+      "POSITION": "职位",
+      "ATTENDANCE": "考勤",
+      "LEAVE": "请假",
+      "PAYROLL": "工资单",
+      "USER": "用户",
+      "ROLE": "角色与权限"
+     }
+    },
+    "HEADER": {
+     "LOGOUT": "退出登录"
     }
 }
