@@ -21,6 +21,7 @@ export class LoginComponent {
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private translate = inject(TranslateService);
+  formClass = '';
 
   fields: LoginFormFields[] = [
   {
