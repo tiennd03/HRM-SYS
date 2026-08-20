@@ -100,7 +100,7 @@
         "CODE": "Code",
         "NAME": "Nom du département",
         "DESCRIPTION": "Description"
-      }
+      },
      "LOGOUT": "Se déconnecter"
     },
     "API": {

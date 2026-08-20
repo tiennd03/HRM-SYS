@@ -100,9 +100,9 @@
       "CODE": "Mã",
       "NAME": "Tên phòng ban",
       "DESCRIPTION": "Mô tả"
-     "LOGOUT": "Đăng xuất"
     },
-    
+    "LOGOUT": "Đăng xuất"
+    },
     "API": {
         "EMPLOYEE": {
             "ID": "ID",
@@ -119,5 +119,4 @@
             "STATUS": "Trạng thái"
         }
     }
-}
 }
