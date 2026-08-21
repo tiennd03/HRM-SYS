@@ -82,7 +82,6 @@ export class EmployeeListComponent {
 
     this.employeeService.getEmployees(
       String(this.pageIndex()),
-      String(this.pageSize()),
       sort
     ).subscribe({
       next: (res) => {
@@ -90,8 +89,6 @@ export class EmployeeListComponent {
         this.totalElement.set(res.totalElements);
         this.pageIndex.set(res.number ?? this.pageIndex());
         this.pageSize.set(res.size ?? this.pageSize());
-        console.log(res);
-        console.log(sort)
       },
       error: (err) => {
         console.error(err);
@@ -100,15 +97,16 @@ export class EmployeeListComponent {
   }
   
   onSearchChange(value: string): void {
-    this.searchKeyword.set(value ?? '');
-    console.log('Search keyword:', this.searchKeyword());
-   
+    this.searchKeyword.set(value ?? '');  
+    console.log('search keyword', this.searchKeyword()); 
   }
-  onSearchClick() {
+  searchEmployees() {
     this.employeeService
       .searchEmployees(
         {
-          keyword : this.searchKeyword()
+          keyword : this.searchKeyword(),
+          page: this.pageIndex(),
+          sort: this.sortField() ? `${this.sortField()},${this.sortDirection()}` : undefined
         }
       )
       .subscribe({
@@ -117,20 +115,27 @@ export class EmployeeListComponent {
           this.totalElement.set(res.totalElements);
           this.pageIndex.set(res.number ?? this.pageIndex());
           this.pageSize.set(res.size ?? this.pageSize());
+          console.log('search result', res);
         },
         error: (err) => {
           console.log(err);
         }
       });
   }
+  onSearchClick() {
+    this.pageIndex.set(0);
+    this.searchEmployees();
+  }
 
   onPageChange(event:{
-    page: number;
-    size: number
+    page: number
   }): void {
     this.pageIndex.set(event.page);
-    this.pageSize.set(event.size);
-    this.ngOnInit;
+    if(this.searchKeyword() === ''){
+      this.loadEmployees();
+    } else {
+      this.searchEmployees();
+    }
   }
   onSortChange(event:{
     field: string;
@@ -139,12 +144,14 @@ export class EmployeeListComponent {
     this.sortField.set(event.field);
     this.sortDirection.set(event.direction);
     this.pageIndex.set(0);
-   
+    if(this.searchKeyword() === ''){
+      this.loadEmployees();
+    } else {
+      this.searchEmployees();
+    }
   }
 
   ngOnInit(): void {
     this.loadEmployees();
-    this.onSearchClick();
-    console.log(this.data);
   }
 }

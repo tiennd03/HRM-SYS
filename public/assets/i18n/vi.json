@@ -100,7 +100,8 @@
       "CODE": "Mã",
       "NAME": "Tên phòng ban",
       "DESCRIPTION": "Mô tả"
-     },
+    },
+    "LOGOUT": "Đăng xuất,
      "FORM": {
       "TITLE_CREATE": "Thêm phòng ban",
       "TITLE_EDIT": "Chỉnh sửa phòng ban",

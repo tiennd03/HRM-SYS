@@ -27,7 +27,7 @@ export class DataTableComponent<T extends Record<string, any> = any> {
   @Input() sortDirection: 'asc' | 'desc' = 'asc';
 
   @Output() pageChange =
-    new EventEmitter<{ page: number; size: number }>();
+    new EventEmitter<{ page: number }>();
 
   @Output() sortChange =
     new EventEmitter<{ field: string; direction: 'asc' | 'desc' }>();
@@ -40,8 +40,7 @@ export class DataTableComponent<T extends Record<string, any> = any> {
     if (page < 0 || page >= this.totalPages) return;
 
     this.pageChange.emit({
-      page,
-      size: this.pageSize
+      page
     });
   }
 

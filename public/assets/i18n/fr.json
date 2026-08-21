@@ -101,6 +101,7 @@
         "NAME": "Nom du département",
         "DESCRIPTION": "Description"
       },
+     "LOGOUT": "Se déconnecter",
      "FORM": {
       "TITLE_CREATE": "Add Department",
       "TITLE_EDIT": "Edit Department",

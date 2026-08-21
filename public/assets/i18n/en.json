@@ -101,6 +101,7 @@
         "NAME": "Department Name",
         "DESCRIPTION": "Description"
       },
+     "LOGOUT": "Logout",
       "FORM": {
         "TITLE_CREATE": "Add Department",
         "TITLE_EDIT": "Edit Department",
