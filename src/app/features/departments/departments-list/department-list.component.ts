@@ -5,7 +5,8 @@ import { TableColumn } from '../../../shared/models/table.model';
 import { DepartmentService } from '../service/department.service'; 
 import { Department } from '../model/department.model';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
-import { FieldConfig } from '../../../shared/models/field-config.model';
+import { FieldConfig } from '../../../shared/dynamic-form/models/field-types/field-config.model';
+import { FormConfig } from '../../../shared/dynamic-form/models/formConfig.model';
 
 @Component({
   selector: 'app-department-list',
@@ -39,6 +40,17 @@ export class DepartmentListComponent implements OnInit {
     },
   ];
 
+  searchFormConfig: FormConfig = {
+    fields: this.searchFields,
+    buttons: [
+      {
+        label: 'DEPARTMENT.SEARCH_BUTTON',
+        type: 'submit',
+        className: 'bg-blue-600 text-white px-4 py-2 rounded h-fit',
+      },
+    ],
+  };
+
   ngOnInit(): void {
     this.loadTranslations();
     this.loadData();
@@ -60,6 +72,10 @@ export class DepartmentListComponent implements OnInit {
       this.searchFields = [
         { ...this.searchFields[0], placeholder: t['DEPARTMENT.SEARCH_PLACEHOLDER'] },
       ];
+      this.searchFormConfig = {
+        ...this.searchFormConfig,
+        fields: this.searchFields,
+      };
     });
   }
 

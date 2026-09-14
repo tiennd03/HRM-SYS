@@ -4,23 +4,25 @@ import { CommonModule } from "@angular/common";
 
 import { TranslatePipe } from "@ngx-translate/core";
 
-import { FieldConfig } from "../models/field-config.model";
-import { TextFieldComponent } from "./field-types/text-field/text-field.component";
-import { CheckboxFieldComponent } from "./field-types/checkbox-field/checkbox-field.component";
-import { PasswordFieldComponent } from "./field-types/password-field/password-field.component";
-import { RadioFieldComponent } from "./field-types/radio-field/radio-field.component";
-import { EmailFieldComponent } from "./field-types/email-field/email-field.component";
-import { SelectFieldComponent } from "./field-types/select-field/select-field.component";
-import { DateFieldComponent } from "./field-types/date-field/date-field.component";
-import { TextareaFieldComponent } from "./field-types/textarea-field/textarea-field.component";
-import { SearchFieldComponent } from "./field-types/search-field/search-field.component";
+import { TextFieldComponent } from "./components/field-types/text-field/text-field.component";
+import { CheckboxFieldComponent } from "./components/field-types/checkbox-field/checkbox-field.component";
+import { PasswordFieldComponent } from "./components/field-types/password-field/password-field.component";
+import { RadioFieldComponent } from "./components/field-types/radio-field/radio-field.component";
+import { EmailFieldComponent } from "./components/field-types/email-field/email-field.component";
+import { SelectFieldComponent } from "./components/field-types/select-field/select-field.component";
+import { DateFieldComponent } from "./components/field-types/date-field/date-field.component";
+import { TextareaFieldComponent } from "./components/field-types/textarea-field/textarea-field.component";
+import { SearchFieldComponent } from "./components/field-types/search-field/search-field.component";
+import { ButtonFieldComponent } from "./components/button-types/button-filed.component";
+
+import { ButtonConfig } from "./models/button-types/base-button-config.model";
+import { FormConfig } from "./models/formConfig.model";
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
   imports: [ 
     ReactiveFormsModule,
-    TranslatePipe,
     CommonModule,
 
     
@@ -32,26 +34,31 @@ import { SearchFieldComponent } from "./field-types/search-field/search-field.co
     SelectFieldComponent,
     DateFieldComponent,
     TextareaFieldComponent,
-    SearchFieldComponent
+    SearchFieldComponent,
+    ButtonFieldComponent
   ],
   templateUrl: './dynamic-form.component.html',
 })
 export class DynamicFormComponent {
-  fields = input.required<FieldConfig[]>();
+  config = input.required<FormConfig>();
+
   formSubmit = output<Record<string, any>>();
   initialValue = input<Record<string, any>>({}); 
   
   searchChange = output<string>();
   searchClick = output<void>();
 
+  buttonClick = output<ButtonConfig>();
+
   form = new FormGroup({});
-  submitLabel = input<string>('');
-  buttonClass = input<string>('');
   formClass = input<string>('');
+  formButtonClass = input<string>('');
+  formFieldClass = input<string>('');
   constructor() {
     effect(() => {
       const values = this.initialValue();   
-      this.fields().forEach(field => {
+      const fields = this.config().fields;
+      fields.forEach(field => {
         this.form.addControl(
           field.name,
           new FormControl(values[field.name] ?? '', field.validators ?? [])
@@ -62,6 +69,10 @@ export class DynamicFormComponent {
   onSubmit() {
     if (this.form.invalid) return;
     this.formSubmit.emit(this.form.value);
+  }
+  onButtonClick(button: ButtonConfig) {
+    button.action?.();
+    this.buttonClick.emit(button);
   }
   getControl(name: string): FormControl {
     return this.form.get(name) as FormControl;

@@ -1,4 +1,4 @@
-import { BaseFieldConfig, DynamicFieldOption } from "../base-field-config.model";
+import { BaseFieldConfig, DynamicFieldOption } from "./base-field-config.model";
 
 const enum ActiveChecked {
     ACTIVE = 'ACTIVE',

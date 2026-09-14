@@ -2,13 +2,14 @@ import { Component , inject , signal} from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Validators } from '@angular/forms';
 
-import { TextField } from '../../../../shared/models/field-types/text-fiels.model';
-import { DateField } from '../../../../shared/models/field-types/date-field.model';
-import { SelectField } from '../../../../shared/models/field-types/select-field.model';
+import { TextField } from '../../../../shared/dynamic-form/models/field-types/text-fiels.model';
+import { DateField } from '../../../../shared/dynamic-form/models/field-types/date-field.model';
+import { SelectField } from './../../../../shared/dynamic-form/models/field-types/select-field.model';
 import { DynamicFormComponent } from '../../../../shared/dynamic-form/dynamic-form.component';
-import { EmailField } from '../../../../shared/models/field-types/email-field.model';
+import { EmailField } from './../../../../shared/dynamic-form/models/field-types/email-field.model';
+import { FormConfig } from '../../../../shared/dynamic-form/models/formConfig.model';
 
-import { VALIDATION_PATTERN } from '../../../../shared/dynamic-form/constants/validation-pattern.constant';
+import { VALIDATION_PATTERN } from '../../constants/validation-pattern.constant';
 export type dynamicform = TextField | DateField | SelectField | EmailField ;
 @Component({
   selector: 'app-employee-create',
@@ -195,5 +196,16 @@ export class EmployeeCreateComponent {
       }
     }
   ]
+
+  formConfig: FormConfig = {
+    fields: this.fields,
+    buttons: [
+      {
+        label: 'LOGIN.SUBMIT',
+        type: 'submit',
+        className: 'button-login'
+      }
+    ]
+  };
 
 }

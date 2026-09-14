@@ -19,11 +19,8 @@
       </div>
     }
     <app-dynamic-form
-      [fields]="fields"
+      [config]="formLoginConfig"
       (formSubmit)="onLogin($event)"
-      [formClass]="formClass" 
-      [submitLabel]="'LOGIN.SUBMIT'"
-      [buttonClass]="'button-login'"
     >
       <a href="#" class="col-span-6  flex justify-center text-sm text-blue-600 hover:underline">
         {{'LOGIN.FORGOT_PASSWORD' | translate }}

@@ -2,90 +2,97 @@
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
   [ngClass]="formClass()"
-  class="grid grid-cols-12 gap-y-2 gap-x-4 ">
+  class="flex flex-col gap-4">
+  <div [ngClass]="formFieldClass()"
+        class="grid grid-cols-12 gap-y-2 gap-x-4 "
+  >
+      @for (field of config().fields; track field.name) {
+        
+      @if (field.type === 'text' || field.type === 'number' || field.type === 'tel') {
+        <app-text-field
+          [config]="field"
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-text-field>
+      }
 
+      @if (field.type === 'password') {
+        <app-password-field
+          [config]="field"
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-password-field>
+      }
 
-  @for (field of fields(); track field.name) {
+      @if (field.type === 'email') {
+        <app-email-field
+          [config]="field"
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-email-field>
+      }
 
-    @if (field.type === 'text' || field.type === 'number' || field.type === 'tel') {
-      <app-text-field
+      @if (field.type === 'textarea') {
+        <app-textarea-field
+          [config]="field"
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-textarea-field>
+      }
+
+      @if (field.type === 'checkbox') {
+        <app-checkbox-field
+          [config]="field"
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-checkbox-field>
+      }
+
+      @if (field.type === 'radio') {
+        <app-radio-field
+          [config]="field"
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-radio-field>
+      }
+      
+      @if (field.type === 'select') {
+        <app-select-field
         [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-text-field>
-    }
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-select-field>
+      }
 
-    @if (field.type === 'password') {
-      <app-password-field
+      @if (field.type === 'date') {
+        <app-date-field
         [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-password-field>
-    }
+          [control]="getControl(field.name)"
+          [class]="field.className?.span ?? ''">
+        </app-date-field>
+      }
 
-    @if (field.type === 'email') {
-      <app-email-field
-        [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-email-field>
+      @if (field.type === 'search') {
+        <app-search-field
+          [config]= "field"
+          [control]= "getControl(field.name)"
+          [class]= "field.className?.span ?? ''"
+          (searchChange)="searchChange.emit($event)"
+          (searchClick)="searchClick.emit($event)">
+        </app-search-field>
+      }
     }
-
-    @if (field.type === 'textarea') {
-      <app-textarea-field
-        [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-textarea-field>
-    }
-
-    @if (field.type === 'checkbox') {
-      <app-checkbox-field
-        [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-checkbox-field>
-    }
-
-    @if (field.type === 'radio') {
-      <app-radio-field
-        [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-radio-field>
-    }
-
-    @if (field.type === 'select') {
-      <app-select-field
-        [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-select-field>
-    }
-
-    @if (field.type === 'date') {
-      <app-date-field
-        [config]="field"
-        [control]="getControl(field.name)"
-        [class]="field.className?.span ?? ''">
-      </app-date-field>
-    }
-
-    @if (field.type === 'search') {
-      <app-search-field
-        [config]= "field"
-        [control]= "getControl(field.name)"
-        [class]= "field.className?.span ?? ''"
-        (searchChange)="searchChange.emit($event)"
-        (searchClick)="searchClick.emit($event)">
-      </app-search-field>
-    }
-  }
+  </div>
   <ng-content/>
-  <button
-    type="submit"
-    [class]="buttonClass()">
-    {{ submitLabel() | translate }}
 
-  </button>
+  <div [ngClass]="formButtonClass()" class="flex w-full items-center gap-3">
+    @for (button of config().buttons ?? []; track button.label) {
+      <app-button-field
+        [config]="button"
+        [class]="button.className ?? ''"
+        (clicked)="onButtonClick(button)">
+      </app-button-field>
+    }
+  </div>
+  
 </form>

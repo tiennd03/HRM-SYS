@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService, TranslatePipe } from '@ngx-translate/core';
-import { FieldConfig } from '../../../shared/models/field-config.model'; 
+import { FieldConfig } from '../../../shared/dynamic-form/models/field-types/field-config.model'; 
 import { DepartmentService } from '../service/department.service';
 import { DepartmentInput } from '../model/department.model';
 import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.component';
+import { FormConfig } from '../../../shared/dynamic-form/models/formConfig.model';
 
 @Component({
   selector: 'app-department-form',
@@ -30,6 +31,17 @@ export class DepartmentFormComponent implements OnInit {
     { type: 'text', name: 'name', label: 'DEPARTMENT.FORM.NAME', validators: [Validators.required] },
     { type: 'textarea', name: 'description', label: 'DEPARTMENT.FORM.DESCRIPTION' },
   ];
+
+  formConfig: FormConfig = {
+    fields: this.fields,
+    buttons: [
+      {
+        label: 'DEPARTMENT.FORM.SUBMIT',
+        type: 'submit',
+        className: 'bg-blue-600 text-white px-4 py-2 rounded',
+      },
+    ],
+  };
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');

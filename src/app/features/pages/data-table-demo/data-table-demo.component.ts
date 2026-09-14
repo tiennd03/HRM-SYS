@@ -10,11 +10,8 @@ import { DynamicFormComponent } from '../../../shared/dynamic-form/dynamic-form.
 
 import { USER_ROLE_OPTIONS } from '../../../shared/constants/selectOption.constants';
 import { ACOUNT_STATUS_OPTION } from '../../../shared/constants/radioOption.constants';
+import { FormConfig } from '../../../shared/dynamic-form/models/formConfig.model';
 
-import { DateField } from '../../../shared/models/field-types/date-field.model';
-import { RadioField } from '../../../shared/models/field-types/radio-field.model';
-import { SelectField } from '../../../shared/models/field-types/select-field.model';
-import { SearchField } from '../../../shared/models/field-types/search-field.model';
 
 interface User {
   id: number;
@@ -24,7 +21,6 @@ interface User {
 }
 
 
-export type tableDataForm = RadioField | SelectField | DateField | SearchField;
 
 @Component({
   selector: 'app-data-table-demo',
@@ -61,8 +57,9 @@ export class DataTableDemoComponent implements OnInit {
   sortField = signal('');
   sortDirection= signal<'asc' | 'desc'>('asc');
 
-  fields : tableDataForm[] = [
-    {
+  form : FormConfig = {
+    fields: [
+      {
       type: 'radio',
       name: 'status',
       label: '',
@@ -98,8 +95,9 @@ export class DataTableDemoComponent implements OnInit {
       className: {
         span: 'col-span-4'
       }
-    }
-  ]
+    }]
+  }
+  
 
 
   ngOnInit(): void {

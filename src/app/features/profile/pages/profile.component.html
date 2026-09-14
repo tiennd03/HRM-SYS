@@ -67,10 +67,9 @@
             {{ 'PROFILE.CHANGE_PASSWORD.TITLE' | translate }}
           </h3>
           <app-dynamic-form
-            [fields]="changePasswordFields"
-            [submitLabel]="'PROFILE.CHANGE_PASSWORD.SUBMIT'"
-            [buttonClass]="'button-change-password'"
-          />
+            [config]="changePasswordConfig"
+            (formSubmit)="onChangePassword($event)">
+          </app-dynamic-form>
         </div>
       </div>
     </div>

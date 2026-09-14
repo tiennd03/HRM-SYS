@@ -3,9 +3,7 @@
 
   <app-dynamic-form
     class="mb-4"
-    [fields]="searchFields"
-    [submitLabel]="'DEPARTMENT.SEARCH_BUTTON'"
-    [buttonClass]="'bg-blue-600 text-white px-4 py-2 rounded h-fit'"
+    [config]="searchFormConfig"
     (formSubmit)="onSearchSubmit($event)">
   </app-dynamic-form>
 

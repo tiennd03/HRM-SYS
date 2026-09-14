@@ -6,10 +6,11 @@ import { DynamicFormComponent } from '../../../../shared/dynamic-form/dynamic-fo
 
 import { DEPARTMENT_OPTIONS, JOB_TITLE_OPTIONS, STATUS_OPTIONS } from '../../../../shared/constants/selectOption.constants';
 
-import { SelectField } from '../../../../shared/models/field-types/select-field.model';
-import { SearchField } from '../../../../shared/models/field-types/search-field.model';
+import { SelectField } from '../../../../shared/dynamic-form/models/field-types/select-field.model';
+import { SearchField } from '../../../../shared/dynamic-form/models/field-types/search-field.model';
 import { Employee } from '../../models/employee.model';
 import { EMPLOYEE_COLUMNS } from '../../constants/employee.constant';
+import { FormConfig } from '../../../../shared/dynamic-form/models/formConfig.model';
 
 
 export type dynamicForm = SearchField | SelectField;
@@ -64,6 +65,10 @@ export class EmployeeListComponent {
       options: STATUS_OPTIONS
     }
   ]
+
+  formConfig: FormConfig = {
+    fields: this.fields
+  };
 
   columns = EMPLOYEE_COLUMNS;
   data = signal<Employee[]>([]);
