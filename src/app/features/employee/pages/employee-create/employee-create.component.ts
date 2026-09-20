@@ -1,4 +1,4 @@
-import { Component , inject , signal} from '@angular/core';
+import { Component , effect, inject } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Validators } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { FormConfig } from '../../../../shared/dynamic-form/models/formConfig.mo
 
 import { VALIDATION_PATTERN } from '../../constants/validation-pattern.constant';
 import { Employee } from '../../models/employee.model';
+import { DepartmentService } from '../../../departments/service/department.service';
 export type dynamicform = TextField | DateField | SelectField | EmailField ;
 @Component({
   selector: 'app-employee-create',
@@ -18,10 +19,12 @@ export type dynamicform = TextField | DateField | SelectField | EmailField ;
     DynamicFormComponent,
     TranslatePipe
   ],
-  templateUrl: './employee-create.component.html',
-  styleUrl: './employee-create.component.scss'
+  templateUrl: './employee-create.component.html'
+
 })
 export class EmployeeCreateComponent {
+  private departmentService = inject(DepartmentService);
+
   formClass = "p-4 rounded border border-gray-200 bg-white";
   fields : dynamicform[] = [
     {
@@ -125,14 +128,10 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'select',
-      name: 'Phòng ban',
+      name: 'departmentId',
       label: 'EMP.CREATE.DEPARTMENT',
       required: true,
-      options: [
-        { label: 'Kinh doanh', value: 'sales' },
-        { label: 'Kỹ thuật', value: 'engineering' },
-        { label: 'Hành chính', value: 'hr' },
-      ],
+      options: [],
       className: {
         span: 'col-span-6'
       }
@@ -219,8 +218,30 @@ export class EmployeeCreateComponent {
     ]
   };
 
+  constructor() {
+    effect(() => {
+      const departments = this.departmentService.departments();
+      this.fields = this.fields.map(field =>
+        field.name === 'departmentId' && field.type === 'select'
+          ? {
+              ...field,
+              options: departments.map(department => ({
+                label: department.name,
+                value: department.id,
+              })),
+            }
+          : field
+      );
+      this.formConfig = { ...this.formConfig, fields: this.fields };
+    });
+  }
+
+  ngOnInit(): void {
+    this.departmentService.search({ page: 0, size: 1000 });
+  }
+
   onSubmit(value : Record<string, any>): void {
-    const payload: Employee = {
+    const payload: Omit<Employee, 'id'> = {
       employeeCode: value['employeeCode'],
       fullName: value['fullName'],
       gender: value['gender'],
