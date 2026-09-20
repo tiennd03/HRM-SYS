@@ -10,6 +10,7 @@ import { EmailField } from './../../../../shared/dynamic-form/models/field-types
 import { FormConfig } from '../../../../shared/dynamic-form/models/formConfig.model';
 
 import { VALIDATION_PATTERN } from '../../constants/validation-pattern.constant';
+import { Employee } from '../../models/employee.model';
 export type dynamicform = TextField | DateField | SelectField | EmailField ;
 @Component({
   selector: 'app-employee-create',
@@ -25,7 +26,7 @@ export class EmployeeCreateComponent {
   fields : dynamicform[] = [
     {
       type: 'text',
-      name: 'Mã nhân viên',
+      name: 'employeeCode',
       label: 'EMP.CREATE.ID',
       placeholder: 'EMP__',
       required: true,
@@ -44,7 +45,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'text',
-      name: 'Họ và tên',
+      name: 'fullName',
       label: 'EMP.CREATE.FULL_NAME',
       placeholder: 'Nguyễn Văn A',
       required: true,
@@ -62,7 +63,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'select',
-      name: 'Giới tính',
+      name: 'gender',
       label: 'EMP.CREATE.GENDER',
       required: true,
       options: [
@@ -75,7 +76,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'date',
-      name: 'Ngày sinh',
+      name: 'dateOfBirth',
       label: 'EMP.CREATE.DATE_OF_BIRTH',
       minDate: new Date(1900, 0, 1),
       maxDate: new Date(),
@@ -88,7 +89,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'email',
-      name: 'Email',
+      name: 'email',
       label: 'EMP.CREATE.EMAIL',
       placeholder: 'name@company.vn',
       required: true,
@@ -106,7 +107,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'tel',
-      name: 'Số điện thoại',
+      name: 'phone',
       label: 'EMP.CREATE.PHONE',
       placeholder: '0123456789',
       required: true,
@@ -138,7 +139,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'select',
-      name: 'Chức vụ',
+      name: 'position',
       label: 'EMP.CREATE.POSITION',
       required: true,
       options: [
@@ -152,7 +153,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'date',
-      name: 'Ngày vào làm',
+      name: 'joinDate',
       label: 'EMP.CREATE.JOIN_DATE',
       minDate: new Date(1900, 0, 1),
       maxDate: new Date(),
@@ -165,7 +166,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'number',
-      name: 'Lương',
+      name: 'salary',
       label: 'EMP.CREATE.SALARY',
       placeholder: 'VND',
       required: true,
@@ -183,7 +184,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'select',
-      name: 'Trạng thái',
+      name: 'status',
       label: 'EMP.CREATE.STATUS',
       placeholder: 'ACTIVE / PROBATION / INACTIVE / TERMINATED  ▾',
       required: true,
@@ -201,11 +202,37 @@ export class EmployeeCreateComponent {
     fields: this.fields,
     buttons: [
       {
-        label: 'LOGIN.SUBMIT',
+        label: 'EMP.BTN.SAVE_BTN',
         type: 'submit',
-        className: 'button-login'
+        className: {
+          button: 'btn bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 px-8',
+          container : ''
+        }
+      },
+      {
+        label: 'EMP.BTN.CANCEL_BTN',
+        type: 'button',
+        className: {
+          button: 'btn px-8'
+        }
       }
     ]
   };
+
+  onSubmit(value : Record<string, any>): void {
+    const payload: Employee = {
+      employeeCode: value['employeeCode'],
+      fullName: value['fullName'],
+      gender: value['gender'],
+      dateOfBirth: value['dateOfBirth'],
+      email: value['email'],
+      phone: value['phone'],
+      departmentId: value['departmentId'],
+      positionId: value['position'],
+      joinDate: value['joinDate'],
+      salary: value['salary'],
+      status: value['status']
+    }
+  }
 
 }

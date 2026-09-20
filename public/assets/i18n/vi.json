@@ -118,6 +118,10 @@
             "SALARY_REQUIRED": "Lương là bắt buộc",
             "SALARY_PATTERN": "Lương không hợp lệ",
             "SALARY_MIN": "Lương phải lớn hơn 0"
+        },
+        "BTN": {
+            "CANCEL_BTN": "Hủy",
+            "SAVE_BTN": "Lưu"
         }
     },
     "DEPARTMENT": {

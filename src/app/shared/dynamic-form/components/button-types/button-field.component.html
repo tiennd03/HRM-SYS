@@ -1,8 +1,8 @@
 <button
   [type]="config().type"
   [disabled]="config().disabled ?? false"
-  [class]="config().className ?? 
-    'px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50'"
+  [class]="config().className?.button ?? 
+    ''"
   (click)="onClick()"
 >
   {{ config().label | translate }}
