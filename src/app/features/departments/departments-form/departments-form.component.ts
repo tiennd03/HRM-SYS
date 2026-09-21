@@ -38,7 +38,9 @@ export class DepartmentFormComponent implements OnInit {
       {
         label: 'DEPARTMENT.FORM.SUBMIT',
         type: 'submit',
-        className: 'bg-blue-600 text-white px-4 py-2 rounded',
+        className: {
+          button : 'bg-blue-600 text-white px-4 py-2 rounded'
+        },
       },
     ],
   };

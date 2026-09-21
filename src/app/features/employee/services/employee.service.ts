@@ -15,4 +15,7 @@ export class EmployeeService extends CrudService<Employee, EmployeeSearchRequest
     searchEmployees(request : EmployeeSearchRequest){
         return this.search(request);
     }
+    createNewEmployee(employee : Employee) {
+        return this.create(employee);
+    }
 }
