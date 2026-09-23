@@ -12,6 +12,8 @@ import { FormConfig } from '../../../../shared/dynamic-form/models/formConfig.mo
 import { VALIDATION_PATTERN } from '../../constants/validation-pattern.constant';
 import { Employee } from '../../models/employee.model';
 import { DepartmentService } from '../../../departments/service/department.service';
+import { PositionService } from '../../../position/service/position.service'
+import { DynamicFieldOption } from '../../../../shared/dynamic-form/models/field-types/base-field-config.model';
 export type dynamicform = TextField | DateField | SelectField | EmailField ;
 @Component({
   selector: 'app-employee-create',
@@ -24,6 +26,8 @@ export type dynamicform = TextField | DateField | SelectField | EmailField ;
 })
 export class EmployeeCreateComponent {
   private departmentService = inject(DepartmentService);
+  private positionService = inject(PositionService);
+
 
   formClass = "p-4 rounded border border-gray-200 bg-white";
   fields : dynamicform[] = [
@@ -128,7 +132,7 @@ export class EmployeeCreateComponent {
     },
     {
       type: 'select',
-      name: 'departmentId',
+      name: 'department',
       label: 'EMP.CREATE.DEPARTMENT',
       required: true,
       options: [],
@@ -141,11 +145,7 @@ export class EmployeeCreateComponent {
       name: 'position',
       label: 'EMP.CREATE.POSITION',
       required: true,
-      options: [
-        { label: 'Nhân viên', value: 'employee' },
-        { label: 'Quản lý', value: 'manager' },
-        { label: 'Giám đốc', value: 'director' },
-      ],
+      options: [],
       className: {
         span: 'col-span-6'
       }
@@ -217,27 +217,47 @@ export class EmployeeCreateComponent {
       }
     ]
   };
+  private updateFieldOptions(
+  fieldName: string,
+  options: DynamicFieldOption[]
+  ): void {
+    this.fields = this.fields.map(field =>
+      field.name === fieldName && field.type === 'select'
+        ? {
+            ...field,
+            options
+          }
+        : field
+    );
 
+    this.formConfig = {
+      ...this.formConfig,
+      fields: this.fields
+    };
+  }
   constructor() {
     effect(() => {
       const departments = this.departmentService.departments();
-      this.fields = this.fields.map(field =>
-        field.name === 'departmentId' && field.type === 'select'
-          ? {
-              ...field,
-              options: departments.map(department => ({
-                label: department.name,
-                value: department.id,
-              })),
-            }
-          : field
+      this.updateFieldOptions(
+        'department',
+        departments.map(department => ({
+          label: department.name,
+          value: department.id
+        }))
       );
-      this.formConfig = { ...this.formConfig, fields: this.fields };
-    });
+      const positions = this.positionService.positions();
+      this.updateFieldOptions(
+        'position',
+        positions.map( position => ({
+          label: position.name,
+          value: position.id
+        }))
+      )
+    }); 
   }
-
   ngOnInit(): void {
     this.departmentService.search({ page: 0, size: 1000 });
+    this.positionService.searchListPosition({ page: 0, size: 1000 });
   }
 
   onSubmit(value : Record<string, any>): void {
