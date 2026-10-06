@@ -33,6 +33,12 @@ export const routes: Routes = [
             loadComponent: () => 
               import('./features/employee/pages/employee-create/employee-create.component')
                 .then(m => m.EmployeeCreateComponent)
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./features/employee/pages/employee-detail/employee-detail.component')
+                .then(m => m.EmployeeDetailComponent)
           }
         ]
       },
